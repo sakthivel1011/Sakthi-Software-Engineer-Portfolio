@@ -113,8 +113,8 @@ const Footer = () => {
             © {currentYear} Sakthi. All rights reserved.
           </p>
           <p className="text-slate-400 text-xs font-medium">
-            Designed with <span className="text-slate-300">|</span> Clean &
-            Premium
+            Portfolio designed by <span className="text-slate-300">Sakthi</span>{" "}
+            | Powered by <span className="text-indigo-400">Antigravity</span>
           </p>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import profileImg from "../assets/Profile Image.jpg";
+
 const About = () => {
   return (
     <section id="about" className="section-container bg-white">
@@ -15,21 +17,18 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
           <div className="order-2 md:order-1">
-            <div className="relative">
-              <div className="aspect-square bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center p-12">
-                <div className="w-full h-full bg-slate-100 rounded-xl flex items-center justify-center">
-                  <svg
-                    className="w-24 h-24 text-slate-300"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
+            <div className="relative group">
+              {/* Decorative background blob */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-slate-100 to-indigo-50/50 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+
+              <div className="relative aspect-square bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-y-2">
+                <img
+                  src={profileImg}
+                  alt="Sakthivel"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Subtle overlay on hover */}
+                <div className="absolute inset-0 bg-slate-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
             </div>
           </div>
@@ -38,20 +37,24 @@ const About = () => {
           <div className="order-1 md:order-2 space-y-8">
             <h3 className="text-2xl md:text-3xl font-bold text-slate-900 font-display">
               Dedicated to building{" "}
-              <span className="text-slate-500">elegant</span> solutions
+              <span className="text-slate-500">innovative</span> solutions
             </h3>
 
             <p className="text-slate-500 leading-relaxed text-base font-normal">
-              I'm a full-stack developer specializing in building clean,
-              high-performance web applications. With a focus on user experience
-              and technical excellence, I transform complex ideas into intuitive
-              digital products.
+              I am Sakthivel, a versatile software developer passionate about
+              building scalable and dynamic web applications. I specialize in
+              modern front-end technologies such as React and Next.js, with a
+              strong focus on performance, clean architecture, and user-centric
+              design.
             </p>
 
             <p className="text-slate-500 leading-relaxed text-base font-normal">
-              My approach combines modern technologies with a minimalist design
-              philosophy, ensuring that every project I work on is both
-              functional and visually sophisticated.
+              I also leverage AI-powered tools such as Antigravity to build
+              efficient, intelligent solutions and streamline development
+              workflows. With a solid foundation in Java, SQL, and system
+              design, combined with strong leadership, collaboration, and time
+              management skills, I consistently deliver robust, maintainable,
+              and high-quality applications across teams.
             </p>
 
             <div className="grid grid-cols-2 gap-8 pt-4">
@@ -71,9 +74,7 @@ const About = () => {
                   </svg>
                   <span>Location</span>
                 </div>
-                <p className="text-sm text-slate-500 pl-6">
-                  Your City, Country
-                </p>
+                <p className="text-sm text-slate-500 pl-6">Chennai</p>
               </div>
 
               <div className="space-y-2">
@@ -92,7 +93,7 @@ const About = () => {
                   <span>Email</span>
                 </div>
                 <p className="text-sm text-slate-500 pl-6">
-                  your.email@example.com
+                  sakthivel.p1011@gmail.com
                 </p>
               </div>
             </div>

@@ -109,10 +109,10 @@ const Contact = () => {
                     Email
                   </h4>
                   <a
-                    href="mailto:your.email@example.com"
+                    href="mailto:sakthivel.p1011@gmail.com"
                     className="text-slate-500 hover:text-slate-900 transition-colors text-sm"
                   >
-                    your.email@example.com
+                    sakthivel.p1011@gmail.com
                   </a>
                 </div>
               </div>
@@ -241,7 +241,7 @@ const Contact = () => {
                   </span>
                 ) : (
                   <>
-                    Send Message{" "}
+                    Submit Form{" "}
                     <HiPaperAirplane className="rotate-90 text-sm group-hover:translate-x-1 transition-transform" />
                   </>
                 )}

@@ -3,56 +3,38 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 const Projects = () => {
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Snake game using Python",
       description:
-        "A full-stack e-commerce solution with payment integration, user authentication, and admin dashboard.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "🛒",
+        "This project is a simple snake game developed using Python. It involves controlling a snake to eat food and grow while avoiding obstacles.",
+      technologies: ["Python"],
+      image: "🐍",
       liveLink: "#",
       githubLink: "#",
     },
     {
-      title: "Task Management App",
+      title: "Basic Calculator using Java AWT and Swing",
       description:
-        "Collaborative task management tool with real-time updates, drag-and-drop functionality, and team features.",
-      technologies: ["Next.js", "TypeScript", "PostgreSQL", "Socket.io"],
-      image: "✅",
+        "This project is a basic calculator application developed using Java AWT and Swing. It provides simple arithmetic operations in a user-friendly interface.",
+      technologies: ["Java", "AWT", "Swing"],
+      image: "🧮",
       liveLink: "#",
       githubLink: "#",
     },
     {
-      title: "Weather Dashboard",
+      title: "Java Todo List with AWT and Swing",
       description:
-        "Beautiful weather application with location-based forecasts, interactive maps, and detailed analytics.",
-      technologies: ["React", "Tailwind CSS", "Weather API", "Charts.js"],
-      image: "🌤️",
+        "This project is JavaTodo: featuring a simple user interface, it's a straightforward task organizer. Utilizing AWT and Swing libraries, it offers an easy-to-use platform for efficient task management.",
+      technologies: ["Java", "AWT", "Swing"],
+      image: "📝",
       liveLink: "#",
       githubLink: "#",
     },
     {
-      title: "Social Media Analytics",
+      title: "Library Management System with Python",
       description:
-        "Analytics dashboard for tracking social media metrics with data visualization and export features.",
-      technologies: ["Vue.js", "Python", "FastAPI", "D3.js"],
-      image: "📊",
-      liveLink: "#",
-      githubLink: "#",
-    },
-    {
-      title: "Portfolio CMS",
-      description:
-        "Content management system specifically designed for creative professionals to showcase their work.",
-      technologies: ["React", "Strapi", "GraphQL", "AWS"],
-      image: "🎨",
-      liveLink: "#",
-      githubLink: "#",
-    },
-    {
-      title: "Fitness Tracker",
-      description:
-        "Mobile-responsive fitness tracking app with workout plans, progress tracking, and nutrition guides.",
-      technologies: ["React Native", "Firebase", "Redux", "Charts"],
-      image: "💪",
+        "Efficiently manage library resources with our Python-based Library Management System. Track books, issue, return, and update details effortlessly. Powered by Tkinter for user-friendly interface.",
+      technologies: ["Python", "Tkinter"],
+      image: "📚",
       liveLink: "#",
       githubLink: "#",
     },
