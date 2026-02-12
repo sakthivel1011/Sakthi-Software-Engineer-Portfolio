@@ -65,9 +65,8 @@ const ProjectCard = ({
         <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all duration-700" />
 
         <div
-          className={`flex flex-col md:flex-row w-full h-full items-center gap-6 md:gap-16 relative z-10 ${
-            i % 2 === 1 ? "md:flex-row-reverse" : ""
-          }`}
+          className={`flex flex-col md:flex-row w-full h-full items-center gap-6 md:gap-16 relative z-10 ${i % 2 === 1 ? "md:flex-row-reverse" : ""
+            }`}
         >
           {/* Image Container */}
           <div className="w-full md:w-[45%] h-[200px] sm:h-[250px] md:h-full rounded-2xl overflow-hidden relative border border-slate-600/50 shadow-xl group/img shrink-0">
@@ -156,7 +155,7 @@ const Projects = () => {
       description:
         "E-Commerce Platform is a full-stack project designed for seamless online shopping experiences. Built with React for a dynamic frontend and Node.js with Express for the backend, the application leverages MongoDB for efficient data management. It supports product browsing, cart management, secure order handling, and scalable architecture for real-world commerce use cases.",
       technologies: ["React", "Node.js", "Express.js", "MongoDB"],
-      image: "/assets/projects/shopping-hub.png",
+      image: "assets/projects/shopping-hub.png",
       liveLink: "#",
       githubLink: "#",
     },
@@ -165,7 +164,7 @@ const Projects = () => {
       description:
         "A simple Snake game built with Python using Pygame for graphics and input handling, and the random module for dynamic food generation, where the player controls a growing snake while avoiding obstacles and collisions.",
       technologies: ["Python"],
-      image: "/assets/projects/snake-game.jpg",
+      image: "assets/projects/snake-game.jpg",
       githubLink: "https://github.com/sakthivel1011/snakegame",
     },
     {
@@ -173,7 +172,7 @@ const Projects = () => {
       description:
         "Efficiently manage library resources with our Python-based Library Management System. Track books, issue, return, and update details effortlessly. Powered by Tkinter for user-friendly interface.",
       technologies: ["Python", "Tkinter"],
-      image: "/assets/projects/library-system.jpg",
+      image: "assets/projects/library-system.jpg",
       liveLink: "#",
       githubLink: "#",
     },
@@ -182,7 +181,7 @@ const Projects = () => {
       description:
         "A responsive and visually clean personal portfolio website built using HTML, CSS, and vanilla JavaScript. The site showcases projects, skills, and contact information with smooth animations, structured layouts, and optimized performance. Designed with a focus on simplicity, readability, and professional UI/UX standards.",
       technologies: ["HTML5", "CSS3", "JavaScript"],
-      image: "/assets/projects/portfolio.jpg",
+      image: "assets/projects/portfolio.jpg",
       liveLink: "https://sakthivel1011.github.io/PORTFOLIO/",
       githubLink: "https://github.com/sakthivel1011/PORTFOLIO",
     },

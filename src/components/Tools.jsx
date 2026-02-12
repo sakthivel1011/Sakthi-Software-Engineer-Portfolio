@@ -15,7 +15,7 @@ const Tools = () => {
       name: "VS Code",
       icon: (
         <img
-          src="/assets/skills/vscode.jpg"
+          src="assets/skills/vscode.jpg"
           alt="VS Code"
           className="w-full h-full object-contain rounded-xl"
         />
@@ -26,7 +26,7 @@ const Tools = () => {
       name: "AntiGravity",
       icon: (
         <img
-          src="/assets/skills/antigravity.png"
+          src="assets/skills/antigravity.png"
           alt="AntiGravity"
           className="w-full h-full object-contain rounded-xl p-1"
         />
@@ -37,7 +37,7 @@ const Tools = () => {
       name: "Cursor AI",
       icon: (
         <img
-          src="/assets/skills/cursor-ai.png"
+          src="assets/skills/cursor-ai.png"
           alt="Cursor AI"
           className="w-full h-full object-contain rounded-xl"
         />
@@ -58,7 +58,7 @@ const Tools = () => {
       name: "Gemini CLI",
       icon: (
         <img
-          src="/assets/skills/gemini-cli.png"
+          src="assets/skills/gemini-cli.png"
           alt="Gemini CLI"
           className="w-full h-full object-contain rounded-xl p-1"
         />
@@ -69,7 +69,7 @@ const Tools = () => {
       name: "Figma",
       icon: (
         <img
-          src="/assets/skills/figma.png"
+          src="assets/skills/figma.png"
           alt="Figma"
           className="w-full h-full object-contain rounded-xl p-1"
         />
@@ -85,7 +85,7 @@ const Tools = () => {
       name: "Lovable",
       icon: (
         <img
-          src="/assets/skills/lovable.png"
+          src="assets/skills/lovable.png"
           alt="Lovable"
           className="w-full h-full object-contain rounded-xl p-1"
         />
@@ -96,7 +96,7 @@ const Tools = () => {
       name: "Uizard",
       icon: (
         <img
-          src="/assets/skills/uizard.png"
+          src="assets/skills/uizard.png"
           alt="Uizard"
           className="w-full h-full object-contain rounded-xl p-1"
         />

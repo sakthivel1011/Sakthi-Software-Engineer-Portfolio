@@ -208,7 +208,7 @@ const Achievements = () => {
       description:
         "Successfully completed virtual internship training on Android application development with IoT conducted by the National Small Industries Corporation Limited (NSIC), a Government of India enterprise, showcasing proficiency in simple applications.",
       type: "Internship",
-      image: "/assets/certificates/certificate(NSIC).jpg",
+      image: "assets/certificates/certificate(NSIC).jpg",
     },
     {
       title: "Internship - Web Development",
@@ -216,7 +216,7 @@ const Achievements = () => {
       description:
         "Completed a one-week internship at Brazy Technologies, gaining practical experience in web development technologies and methodologies, including HTML, CSS, and JavaScript.",
       type: "Internship",
-      image: "/assets/certificates/certificate(Brassy Technologies).jpg",
+      image: "assets/certificates/certificate(Brassy Technologies).jpg",
     },
     {
       title: "Spot Award - Best Performance (March 2025)",
@@ -237,25 +237,23 @@ const Achievements = () => {
   const certifications = [
     {
       name: "Machine Learning courses by Infosys Springboard",
-      image: "/assets/certificates/certificat(Machine learning).jpg",
+      image: "assets/certificates/certificat(Machine learning).jpg",
     },
     {
       name: "IBM Cloud courses by IBM",
-      image: "/assets/certificates/certificate(IBM).jpg",
+      image: "assets/certificates/certificate(IBM).jpg",
     },
     {
       name: "Python for data science course by Infosys Springboard",
-      image: "/assets/certificates/certificate(Pythonfordatascience).jpg",
+      image: "assets/certificates/certificate(Pythonfordatascience).jpg",
     },
     {
       name: "Introduction to Artificial intelligence by Infosys Springboard",
-      image:
-        "/assets/certificates/certificate(Introduction to Artificial Intelligence).jpg",
+      image: "assets/certificates/certificate(Introduction to Artificial Intelligence).jpg",
     },
     {
       name: "Introduction to Cyber security by Infosys Springboard",
-      image:
-        "/assets/certificates/certificate(introduction to Cyber Security).jpg",
+      image: "assets/certificates/certificate(introduction to Cyber Security).jpg",
     },
   ];
 
@@ -326,7 +324,7 @@ const Achievements = () => {
               onClick={() =>
                 setSelectedCert({
                   name: "Android Application Development with IoT - NSIC",
-                  image: "/assets/certificates/certificate(NSIC).jpg",
+                  image: "assets/certificates/certificate(NSIC).jpg",
                 })
               }
             >
@@ -351,8 +349,7 @@ const Achievements = () => {
               onClick={() =>
                 setSelectedCert({
                   name: "Web Development Internship - Brazy Technologies",
-                  image:
-                    "/assets/certificates/certificate(Brassy Technologies).jpg",
+                  image: "assets/certificates/certificate(Brassy Technologies).jpg",
                 })
               }
             >
