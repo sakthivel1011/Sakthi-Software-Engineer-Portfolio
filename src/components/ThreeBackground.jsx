@@ -26,9 +26,18 @@ function MovingShape({ position, color, geometry: Geometry }) {
 }
 
 const ThreeBackground = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div className="absolute inset-0 z-0 bg-slate-900 pointer-events-none w-full h-full overflow-hidden">
-      <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+      <Canvas camera={{ position: [0, 0, 10], fov: 50 }} dpr={isMobile ? [1, 1] : [1, 2]}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1.5} color="#4f46e5" />
         <pointLight
@@ -40,20 +49,24 @@ const ThreeBackground = () => {
         <Stars
           radius={100}
           depth={50}
-          count={5000}
+          count={isMobile ? 1500 : 5000}
           factor={4}
           saturation={0}
           fade
           speed={1}
         />
 
-        <MovingShape position={[-3, 2, -5]} color="#6366f1" geometry={Torus} />
-        <MovingShape position={[4, -1, -8]} color="#a855f7" geometry={Sphere} />
-        <MovingShape
-          position={[-5, -4, -10]}
-          color="#3b82f6"
-          geometry={Torus}
-        />
+        {!isMobile && (
+          <>
+            <MovingShape position={[-3, 2, -5]} color="#6366f1" geometry={Torus} />
+            <MovingShape position={[4, -1, -8]} color="#a855f7" geometry={Sphere} />
+            <MovingShape
+              position={[-5, -4, -10]}
+              color="#3b82f6"
+              geometry={Torus}
+            />
+          </>
+        )}
       </Canvas>
     </div>
   );

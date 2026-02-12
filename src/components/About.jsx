@@ -24,6 +24,7 @@ const Card3D = ({ children, className }) => {
   });
 
   function handleMouse(event) {
+    if (window.innerWidth < 1024) return; // Skip logic on mobile
     const rect = event.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -43,7 +44,7 @@ const Card3D = ({ children, className }) => {
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       onMouseMove={handleMouse}
       onMouseLeave={handleMouseLeave}
-      className={`${className} perspective-1000`}
+      className={`${className} perspective-1000 will-change-transform shadow-2xl`}
     >
       {children}
     </motion.div>
@@ -73,7 +74,7 @@ const FoldingStats = ({ className }) => {
 
   return (
     <div
-      className={`flex shadow-2xl bg-white/50 backdrop-blur-md rounded-3xl p-6 border border-white/50 overflow-hidden transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 ${className}`}
+      className={`flex shadow-2xl bg-white/50 backdrop-blur-md rounded-3xl p-6 border border-white/50 overflow-hidden transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 gpu ${className}`}
     >
       <div className="flex gap-4">
         {/* Column 1 - Up (starts at 0, moves up to -33.33%) */}

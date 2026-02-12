@@ -37,7 +37,8 @@ const GalaxyParticles = () => {
 
     const createParticles = () => {
       particles = [];
-      const count = 120;
+      const isMobile = window.innerWidth < 1024;
+      const count = isMobile ? 40 : 120;
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
@@ -53,6 +54,7 @@ const GalaxyParticles = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const isMobile = window.innerWidth < 1024;
 
       particles.forEach((p, i) => {
         // Update position
@@ -65,12 +67,18 @@ const GalaxyParticles = () => {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        // Draw particle with glow
+        // Draw particle with glow (Expensive - disabled on mobile)
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `hsla(${p.hue}, 80%, 70%, ${p.opacity})`;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = `hsla(${p.hue}, 80%, 60%, 0.5)`;
+
+        if (!isMobile) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = `hsla(${p.hue}, 80%, 60%, 0.5)`;
+        } else {
+          ctx.shadowBlur = 0; // Performance gain on mobile
+        }
+
         ctx.fill();
 
         // Draw connections
@@ -241,8 +249,8 @@ const Skills = () => {
                       key={skill.name}
                       variants={cardVariants}
                       className={`skill-card group relative overflow-visible ${isSpecialized
-                          ? "!border-yellow-500/50 !shadow-[0_0_15px_rgba(234,179,8,0.1)] hover:!shadow-[0_0_25px_rgba(234,179,8,0.2)] hover:!border-yellow-400/80"
-                          : ""
+                        ? "!border-yellow-500/50 !shadow-[0_0_15px_rgba(234,179,8,0.1)] hover:!shadow-[0_0_25px_rgba(234,179,8,0.2)] hover:!border-yellow-400/80"
+                        : ""
                         }`}
                     >
                       {/* Skill Level Badge - Only for Basic */}

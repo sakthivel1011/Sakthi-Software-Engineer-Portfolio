@@ -298,15 +298,14 @@ const Projects = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="absolute inset-0 bg-slate-950/90 backdrop-blur-xl cursor-pointer"
+              className="absolute inset-0 bg-slate-950/80 backdrop-blur-md lg:backdrop-blur-xl cursor-pointer"
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              initial={{ opacity: 0, scale: 0.98, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 30 }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="relative w-full max-w-5xl h-auto max-h-[92vh] sm:max-h-[85vh] bg-white rounded-[1.5rem] sm:rounded-[2rem] shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row overflow-hidden border border-slate-200"
+              exit={{ opacity: 0, scale: 0.98, y: 10 }}
+              className="relative w-full max-w-5xl h-auto max-h-[92vh] sm:max-h-[85vh] bg-white rounded-[1.5rem] sm:rounded-[2rem] shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row overflow-hidden border border-slate-200 will-change-transform"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Left: Project Sidebar (Desktop Only) */}

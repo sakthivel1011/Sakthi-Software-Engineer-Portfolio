@@ -26,24 +26,22 @@ const VanishText = () => {
       <AnimatePresence>
         <motion.span
           key={index}
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)", scale: 0.9 }}
+          initial={{ opacity: 0, y: 15, scale: 0.95 }}
           animate={{
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
             scale: 1,
           }}
           exit={{
             opacity: 0,
-            y: -30,
-            filter: "blur(10px)",
-            scale: 0.9,
+            y: -15,
+            scale: 0.95,
           }}
           transition={{
-            duration: 0.5,
-            ease: "easeInOut",
+            duration: 0.4,
+            ease: "easeOut",
           }}
-          className="absolute left-1/2 -translate-x-1/2 top-0 whitespace-nowrap bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-bold"
+          className="absolute left-1/2 -translate-x-1/2 top-0 whitespace-nowrap bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-bold will-change-[transform,opacity]"
           style={{
             filter: "drop-shadow(0 0 20px rgba(129, 140, 248, 0.4))",
           }}

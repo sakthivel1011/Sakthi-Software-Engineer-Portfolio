@@ -11,8 +11,18 @@ import Footer from "./components/Footer";
 import StickyCursor from "./components/StickyCursor";
 
 import { Toaster } from "sonner";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Toaster
@@ -29,7 +39,7 @@ function App() {
           className: "shadow-2xl",
         }}
       />
-      <StickyCursor />
+      {isDesktop && <StickyCursor />}
       <Navigation />
       <main>
         <Hero />
