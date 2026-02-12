@@ -117,10 +117,7 @@ const Navigation = () => {
           right: window.innerWidth >= 768 || isExpanded ? "auto" : "1.5rem",
           left: window.innerWidth >= 768 || isExpanded ? "50%" : "auto",
         }}
-        transition={{
-          duration: window.innerWidth < 768 ? 0.3 : 0.5,
-          ease: window.innerWidth < 768 ? "easeOut" : [0.23, 1, 0.32, 1],
-        }}
+        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
         className="fixed z-[100] top-6 bg-white/95 md:bg-white/95 md:backdrop-blur-md shadow-lg border border-slate-200/50 rounded-full overflow-hidden"
       >
         <div className="px-4 py-3">
@@ -210,10 +207,7 @@ const Navigation = () => {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{
-                duration: 0.4,
-                ease: [0.32, 0, 0.67, 0], // Fast, predictable curve
-              }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="absolute top-0 right-0 bottom-0 w-[85%] max-w-[320px] bg-white shadow-2xl flex flex-col"
             >
               {/* Drawer Header */}
@@ -247,10 +241,7 @@ const Navigation = () => {
                         animate={{
                           opacity: 1,
                           x: 0,
-                          transition: {
-                            delay: window.innerWidth < 768 ? 0 : i * 0.05,
-                            duration: 0.2,
-                          },
+                          transition: { delay: i * 0.05 },
                         }}
                         onClick={(e) => scrollToSection(e, link.href)}
                         className={`flex items-center justify-between px-6 py-4 rounded-2xl transition-all duration-300 font-medium ${isActive
@@ -259,7 +250,7 @@ const Navigation = () => {
                           }`}
                       >
                         <span className="text-lg">{link.name}</span>
-                        {isActive && window.innerWidth >= 768 && (
+                        {isActive && (
                           <motion.div
                             layoutId="drawerActive"
                             className="w-1.5 h-1.5 bg-blue-600 rounded-full"
