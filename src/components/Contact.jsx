@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { HiMail, HiLocationMarker, HiPaperAirplane } from "react-icons/hi";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { motion } from "framer-motion";
+import SocialLinks from "./SocialLinks";
+import MailAnimation from "./MailAnimation";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +14,6 @@ const Contact = () => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,223 +40,207 @@ const Contact = () => {
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      toast.error("Please fill in all required fields correctly.");
       return;
     }
 
     setIsSubmitting(true);
-    setSubmitMessage("");
 
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitMessage("Thank you! Your message has been sent successfully.");
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      title: "Portfolio Contact Form",
+    };
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+
+      toast.success("Message sent successfully! I'll get back to you soon.");
       setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast.error(
+        "Failed to send message. Please try again later or reach out via social media.",
+      );
+    } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitMessage(""), 5000);
-    }, 1500);
+    }
   };
 
-  const socialLinks = [
-    {
-      name: "GitHub",
-      url: "https://github.com/yourusername",
-      icon: <FaGithub size={20} />,
-      color: "hover:text-slate-900 hover:border-slate-300",
-    },
-    {
-      name: "LinkedIn",
-      url: "https://linkedin.com/in/yourusername",
-      icon: <FaLinkedin size={20} />,
-      color: "hover:text-slate-900 hover:border-slate-300",
-    },
-    {
-      name: "Twitter",
-      url: "https://twitter.com/yourusername",
-      icon: <FaTwitter size={20} />,
-      color: "hover:text-slate-900 hover:border-slate-300",
-    },
-  ];
-
   return (
-    <section id="contact" className="section-container bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="section-title">
-            Get In <span className="text-slate-500">Touch</span>
-          </h2>
-          <p className="section-subtitle">
-            Let's discuss your next project or specialized needs.
-          </p>
+    <section
+      id="contact"
+      className="min-h-screen flex flex-col justify-center bg-slate-50 w-full py-16 md:py-24 px-4 sm:px-0 overflow-hidden relative"
+    >
+      {/* Subtle Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 30, 0],
+            y: [0, 15, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[10%] -left-[5%] w-[50%] h-[50%] bg-blue-100/30 rounded-full blur-[100px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, -30, 0],
+            y: [0, -15, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-[10%] -right-[5%] w-[50%] h-[50%] bg-purple-100/20 rounded-full blur-[100px]"
+        />
+      </div>
+
+      <div className="section-container relative z-10 py-0">
+        {/* Compact Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="section-title mb-4">
+              Get In <span className="text-blue-600">Touch</span>
+            </h2>
+            <p className="text-slate-500 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+              Reach out for collaborations or just to say hello. I'm always looking for interesting projects.
+            </p>
+          </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
-          {/* Contact Info */}
-          <div className="space-y-10 py-4">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6 font-display">
-                Let's work <span className="text-slate-500">together</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 max-w-6xl mx-auto items-stretch">
+          {/* Contact Details - (4 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-4 flex flex-col gap-6 h-full"
+          >
+            {/* Info Card */}
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="bg-white/40 backdrop-blur-md rounded-3xl p-6 lg:p-7 shadow-sm border border-slate-100/50 transition-all duration-300"
+            >
+              <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 font-display">
+                Collaborate
               </h3>
-              <p className="text-slate-500 leading-relaxed text-base font-normal">
-                I'm always open to discussing new projects, creative ideas, or
-                opportunities to be part of your vision. Feel free to reach out
-                via the form or my social handles.
+              <p className="text-slate-600 text-sm leading-relaxed opacity-90">
+                Ready to bring engineering discipline and visual elegance to your next project.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="space-y-6">
-              <div className="flex items-start gap-5 group">
-                <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-600 transition-all duration-300">
-                  <HiMail size={20} />
-                </div>
-                <div>
-                  <h4 className="text-slate-900 font-bold mb-0.5 text-base">
-                    Email
-                  </h4>
-                  <a
-                    href="mailto:sakthivel.p1011@gmail.com"
-                    className="text-slate-500 hover:text-slate-900 transition-colors text-sm"
-                  >
-                    sakthivel.p1011@gmail.com
-                  </a>
-                </div>
-              </div>
+            {/* Email Animation Card */}
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="bg-white/40 backdrop-blur-md rounded-3xl p-6 lg:p-7 shadow-sm border border-slate-100/50 flex flex-col items-center justify-center transition-all duration-300 flex-1 min-h-[200px]"
+            >
+              <MailAnimation email="sakthivel.p1011@gmail.com" />
+            </motion.div>
 
-              <div className="flex items-start gap-5 group">
-                <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-600 transition-all duration-300">
-                  <HiLocationMarker size={20} />
-                </div>
-                <div>
-                  <h4 className="text-slate-900 font-bold mb-0.5 text-base">
-                    Location
-                  </h4>
-                  <p className="text-slate-500 text-sm">Your City, Country</p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-slate-900 font-bold mb-6 text-base">
-                Follow Me
+            {/* Social Links Card */}
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="bg-white/40 backdrop-blur-md rounded-3xl p-6 lg:p-7 shadow-sm border border-slate-100/50 transition-all duration-300"
+            >
+              <h4 className="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-[0.2em] opacity-70">
+                Connect Region
               </h4>
-              <div className="flex gap-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-3 bg-white border border-slate-200 rounded-xl text-slate-500 ${social.color} transition-all duration-300`}
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
+              <SocialLinks />
+            </motion.div>
+          </motion.div>
 
-          {/* Contact Form */}
-          <div className="bg-slate-50/50 border border-slate-100 rounded-2xl p-8 md:p-10">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-xs font-semibold text-slate-600 mb-2 ml-1 uppercase tracking-wider"
-                >
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`input-field ${
-                    errors.name ? "border-red-300 bg-red-50/10" : ""
-                  }`}
-                  placeholder="John Doe"
-                />
-                {errors.name && (
-                  <p className="mt-2 text-xs text-red-500 ml-1">
-                    {errors.name}
-                  </p>
-                )}
-              </div>
+          {/* Form - (8 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-8 flex"
+          >
+            <motion.div
+              className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl shadow-blue-500/5 border border-slate-100 flex-grow"
+            >
+              <form onSubmit={handleSubmit} className="h-full flex flex-col justify-between">
+                <div className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={`input-field rounded-2xl ${errors.name ? "border-red-200" : ""}`}
+                        placeholder="Name"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={`input-field rounded-2xl ${errors.email ? "border-red-200" : ""}`}
+                        placeholder="Email"
+                      />
+                    </div>
+                  </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-xs font-semibold text-slate-600 mb-2 ml-1 uppercase tracking-wider"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`input-field ${
-                    errors.email ? "border-red-300 bg-red-50/10" : ""
-                  }`}
-                  placeholder="john@example.com"
-                />
-                {errors.email && (
-                  <p className="mt-2 text-xs text-red-500 ml-1">
-                    {errors.email}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-xs font-semibold text-slate-600 mb-2 ml-1 uppercase tracking-wider"
-                >
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="5"
-                  className={`input-field resize-none ${
-                    errors.message ? "border-red-300 bg-red-50/10" : ""
-                  }`}
-                  placeholder="How can I help you?"
-                ></textarea>
-                {errors.message && (
-                  <p className="mt-2 text-xs text-red-500 ml-1">
-                    {errors.message}
-                  </p>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full btn-primary justify-center mt-2 group"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center gap-2">
-                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                    Processing...
-                  </span>
-                ) : (
-                  <>
-                    Submit Form{" "}
-                    <HiPaperAirplane className="rotate-90 text-sm group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
-              </button>
-
-              {submitMessage && (
-                <div className="p-4 bg-slate-900 text-white rounded-xl text-xs font-medium text-center">
-                  {submitMessage}
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                      Message
+                    </label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows="6"
+                      className={`input-field rounded-2xl resize-none ${errors.message ? "border-red-200" : ""}`}
+                      placeholder="Tell me about your project..."
+                    ></textarea>
+                  </div>
                 </div>
-              )}
-            </form>
-          </div>
+
+                <div className="mt-8">
+                  <motion.button
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    whileTap={{ scale: 0.99 }}
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-3 group shadow-lg"
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                        Sending...
+                      </span>
+                    ) : (
+                      <>
+                        Send Message
+                        <HiPaperAirplane className="rotate-90 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </>
+                    )}
+                  </motion.button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

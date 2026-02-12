@@ -1,107 +1,286 @@
 import profileImg from "../assets/Profile Image.jpg";
+import profileImg1 from "../assets/Profile Image1.jpg";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValue,
+  AnimatePresence,
+} from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { HiCode, HiChip, HiLightningBolt, HiBadgeCheck } from "react-icons/hi";
+
+const Card3D = ({ children, className }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(useTransform(y, [-100, 100], [10, -10]), {
+    stiffness: 100,
+    damping: 30,
+  });
+  const rotateY = useSpring(useTransform(x, [-100, 100], [-10, 10]), {
+    stiffness: 100,
+    damping: 30,
+  });
+
+  function handleMouse(event) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    x.set(mouseX - width / 2);
+    y.set(mouseY - height / 2);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
+  return (
+    <motion.div
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      onMouseMove={handleMouse}
+      onMouseLeave={handleMouseLeave}
+      className={`${className} perspective-1000`}
+    >
+      {children}
+    </motion.div>
+  );
+};
+const FoldingStats = ({ className }) => {
+  const stats = [
+    {
+      label: "Experience",
+      value: "1.5+ Years",
+      color: "bg-blue-50 text-blue-600",
+    },
+    {
+      label: "Projects",
+      value: "10+ Built",
+      color: "bg-indigo-50 text-indigo-600",
+    },
+    {
+      label: "Technologies",
+      value: "15+ Stack",
+      color: "bg-purple-50 text-purple-600",
+    },
+  ];
+
+  // Triplicate for seamless loop (original, clone1, clone2)
+  const items = [...stats, ...stats, ...stats];
+
+  return (
+    <div
+      className={`flex shadow-2xl bg-white/50 backdrop-blur-md rounded-3xl p-6 border border-white/50 overflow-hidden transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500 ${className}`}
+    >
+      <div className="flex gap-4">
+        {/* Column 1 - Up (starts at 0, moves up to -33.33%) */}
+        <div className="flex flex-col gap-4 h-48 overflow-hidden mask-gradient-y">
+          <motion.div
+            animate={{ y: ["0%", "-33.33%"] }}
+            transition={{
+              duration: 8, // Faster, smoother scroll
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="flex flex-col gap-4"
+          >
+            {items.map((stat, i) => (
+              <div
+                key={`c1-${i}`}
+                className="w-32 bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center justify-center shrink-0"
+              >
+                <span
+                  className={`text-[10px] font-black uppercase tracking-wider mb-1 px-2 py-0.5 rounded-full ${stat.color}`}
+                >
+                  {stat.label}
+                </span>
+                <span className="text-lg font-bold font-display text-slate-800">
+                  {stat.value}
+                </span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Column 2 - Down (starts at -33.33%, moves down to 0%) */}
+        <div className="flex flex-col gap-4 h-48 overflow-hidden mask-gradient-y">
+          <motion.div
+            animate={{ y: ["-33.33%", "0%"] }}
+            transition={{
+              duration: 8, // Synced speed
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="flex flex-col gap-4"
+          >
+            {items.map((stat, i) => (
+              <div
+                key={`c2-${i}`}
+                className="w-32 bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center justify-center shrink-0"
+              >
+                <span
+                  className={`text-[10px] font-black uppercase tracking-wider mb-1 px-2 py-0.5 rounded-full ${stat.color}`}
+                >
+                  {stat.label}
+                </span>
+                <span className="text-lg font-bold font-display text-slate-800">
+                  {stat.value}
+                </span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Overlay Gradient for Fade Effect */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-white/80 pointer-events-none" />
+    </div>
+  );
+};
 
 const About = () => {
   return (
-    <section id="about" className="section-container bg-white">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="section-title">
-            About <span className="text-slate-500">Me</span>
-          </h2>
-          <p className="section-subtitle">
-            A brief introduction to my background and passion
-          </p>
+    <section
+      id="about"
+      className="min-h-screen flex items-center bg-slate-50 relative overflow-hidden py-20 px-4"
+    >
+      <div className="section-container w-full py-0">
+        {/* Centered Header */}
+        <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <h2 className="section-title mb-4">
+              About <span className="text-blue-600">Me</span>
+            </h2>
+          </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image Side */}
+        <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 md:gap-16 items-center">
+          {/* About Me Details (Left) */}
           <div className="order-2 md:order-1">
-            <div className="relative group">
-              {/* Decorative background blob */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-slate-100 to-indigo-50/50 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="max-w-xl mx-auto md:mx-0"
+            >
+              <p className="text-sm md:text-lg text-slate-600 leading-relaxed mb-6">
+                I am a software engineer focused on crafting scalable,
+                high-performance web applications using modern JavaScript
+                ecosystems. I care deeply about clean architecture, refined
+                UI/UX, and long-term maintainability.
+              </p>
+              <p className="text-sm md:text-lg text-slate-600 leading-relaxed mb-8">
+                My work blends engineering discipline with visual elegance,
+                ensuring every product is fast, intuitive, and built to scale.
+              </p>
 
-              <div className="relative aspect-square bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-500 transform group-hover:-translate-y-2">
-                <img
-                  src={profileImg}
-                  alt="Sakthivel"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Subtle overlay on hover */}
-                <div className="absolute inset-0 bg-slate-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Key Highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                    <HiCode className="text-blue-700 text-xl" />
+                  </div>
+                  <p className="text-xs md:text-sm font-semibold uppercase tracking-wide text-slate-700">
+                    React & React Native Specialist
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                    <HiChip className="text-blue-700 text-xl" />
+                  </div>
+                  <p className="text-xs md:text-sm font-semibold uppercase tracking-wide text-slate-700">
+                    Scalable System Design
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-4 lg:hidden xl:flex">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                    <HiLightningBolt className="text-blue-700 text-xl" />
+                  </div>
+                  <p className="text-xs md:text-sm font-semibold uppercase tracking-wide text-slate-700">
+                    Performance-First Mindset
+                  </p>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Content Side */}
-          <div className="order-1 md:order-2 space-y-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 font-display">
-              Dedicated to building{" "}
-              <span className="text-slate-500">innovative</span> solutions
-            </h3>
+          {/* Collage Column (Right) */}
+          <div
+            className="relative flex justify-center md:justify-end items-center
+             h-[320px] sm:h-[400px] md:h-auto order-1 md:order-2
+             md:pr-12"
+          >
+            {/* Background Decorative Lines */}
+            <svg
+              className="absolute inset-0 -z-10 w-full h-full 
+             text-blue-200/60 pointer-events-none"
+              viewBox="0 0 100 100"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M0 45 C20 35 40 55 60 45 S80 35 100 45"
+                stroke="currentColor"
+                strokeWidth="0.4"
+              />
+              <path
+                d="M0 55 C20 45 40 65 60 55 S80 45 100 55"
+                stroke="currentColor"
+                strokeWidth="0.4"
+              />
+            </svg>
 
-            <p className="text-slate-500 leading-relaxed text-base font-normal">
-              I am Sakthivel, a versatile software developer passionate about
-              building scalable and dynamic web applications. I specialize in
-              modern front-end technologies such as React and Next.js, with a
-              strong focus on performance, clean architecture, and user-centric
-              design.
-            </p>
-
-            <p className="text-slate-500 leading-relaxed text-base font-normal">
-              I also leverage AI-powered tools such as Antigravity to build
-              efficient, intelligent solutions and streamline development
-              workflows. With a solid foundation in Java, SQL, and system
-              design, combined with strong leadership, collaboration, and time
-              management skills, I consistently deliver robust, maintainable,
-              and high-quality applications across teams.
-            </p>
-
-            <div className="grid grid-cols-2 gap-8 pt-4">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-slate-700 font-bold text-sm">
-                  <svg
-                    className="w-4 h-4 text-slate-400"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>Location</span>
+            <div className="relative w-full max-w-[300px] md:max-w-[380px] aspect-[4/5]">
+              {/* Main Portrait (Image 1) */}
+              <Card3D className="absolute top-0 right-0 w-[80%] h-[80%] z-20">
+                <div className="w-full h-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white bg-white">
+                  <img
+                    src={profileImg1}
+                    alt="Main Portrait"
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-60"></div>
                 </div>
-                <p className="text-sm text-slate-500 pl-6">Chennai</p>
-              </div>
+              </Card3D>
 
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-slate-700 font-bold text-sm">
-                  <svg
-                    className="w-4 h-4 text-slate-400"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <span>Email</span>
+              {/* Stats Component (Replaces Secondary Image) */}
+              <FoldingStats className="absolute -bottom-2 -left-4 sm:-bottom-6 sm:-left-12 z-40 scale-[0.6] sm:scale-[0.8] origin-bottom-left" />
+
+              {/* Code Snippet Card (Third Element) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="absolute top-[10%] -left-[10%] w-[45%] bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 z-10 hidden lg:block"
+              >
+                {/* Decorative elements */}
+                <div className="absolute top-2 left-2 flex gap-1">
+                  <div className="w-2.5 h-2.5 rounded-full bg-blue-400"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-indigo-400"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-purple-400"></div>
                 </div>
-                <p className="text-sm text-slate-500 pl-6">
-                  sakthivel.p1011@gmail.com
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-6">
-              <a href="#contact" className="btn-primary inline-flex">
-                Let's Work Together
-              </a>
+                <div className="space-y-2">
+                  <div className="h-2 w-[80%] bg-slate-100 rounded-full"></div>
+                  <div className="h-2 w-[60%] bg-slate-100 rounded-full"></div>
+                  <div className="h-2 w-[90%] bg-slate-100 rounded-full"></div>
+                </div>
+                <div className="mt-4 flex gap-2">
+                  <div className="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] rounded font-bold">
+                    React
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>

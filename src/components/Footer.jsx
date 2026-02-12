@@ -1,3 +1,5 @@
+import SocialLinks from "./SocialLinks";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -90,20 +92,7 @@ const Footer = () => {
             <h4 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider">
               Find Me On
             </h4>
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-all duration-300"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+            <SocialLinks />
           </div>
         </div>
 
@@ -113,8 +102,7 @@ const Footer = () => {
             © {currentYear} Sakthi. All rights reserved.
           </p>
           <p className="text-slate-400 text-xs font-medium">
-            Portfolio designed by <span className="text-slate-300">Sakthi</span>{" "}
-            | Powered by <span className="text-indigo-400">Antigravity</span>
+            Portfolio designed by <span className="text-slate-300">Sakthi</span>
           </p>
         </div>
       </div>

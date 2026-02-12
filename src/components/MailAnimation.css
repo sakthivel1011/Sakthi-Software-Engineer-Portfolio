@@ -1,0 +1,169 @@
+.letter-image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.animated-mail {
+  position: absolute;
+  height: 150px;
+  width: 200px;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.animated-mail .body {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 100px 200px;
+  border-color: transparent transparent #3b82f6 transparent;
+  /* blue-500 */
+  z-index: 2;
+}
+
+.animated-mail .top-fold {
+  position: absolute;
+  top: 50px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  -webkit-transform-origin: 50% 0%;
+  -webkit-transition:
+    transform 0.4s 0.4s,
+    z-index 0.2s 0.4s;
+  -moz-transform-origin: 50% 0%;
+  -moz-transition:
+    transform 0.4s 0.4s,
+    z-index 0.2s 0.4s;
+  transform-origin: 50% 0%;
+  transition:
+    transform 0.4s 0.4s,
+    z-index 0.2s 0.4s;
+  border-color: #2563eb transparent transparent transparent;
+  /* blue-600 */
+  z-index: 2;
+}
+
+.animated-mail .back-fold {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  height: 100px;
+  background: #2563eb;
+  /* blue-600 */
+  z-index: 0;
+}
+
+.animated-mail .left-fold {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 0 50px 100px;
+  border-color: transparent transparent transparent #1d4ed8;
+  /* blue-700 */
+  z-index: 2;
+}
+
+.animated-mail .letter {
+  left: 20px;
+  bottom: 0px;
+  position: absolute;
+  width: 160px;
+  height: 60px;
+  background: white;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-transition: 0.4s 0.2s;
+  -moz-transition: 0.4s 0.2s;
+  transition: 0.4s 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.animated-mail .letter-content {
+  text-align: center;
+}
+
+.animated-mail .letter-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #1e293b;
+  /* slate-800 */
+  margin-bottom: 2px;
+}
+
+.animated-mail .letter-context {
+  font-size: 10px;
+  color: #64748b;
+  /* slate-500 */
+}
+
+/* Hover State */
+.letter-image:hover .animated-mail {
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+}
+
+.letter-image:hover .animated-mail .top-fold {
+  transition:
+    transform 0.4s,
+    z-index 0.2s;
+  transform: rotateX(180deg);
+  -webkit-transition:
+    transform 0.4s,
+    z-index 0.2s;
+  -webkit-transform: rotateX(180deg);
+  -moz-transition:
+    transform 0.4s,
+    z-index 0.2s;
+  -moz-transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.letter-image:hover .animated-mail .letter {
+  height: 120px;
+  bottom: 95px;
+  /* Significant lift to pop out of envelope */
+}
+
+.shadow {
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  width: 400px;
+  height: 20px;
+  transition: 0.4s;
+  transform: translateX(-50%);
+  -webkit-transition: 0.4s;
+  -webkit-transform: translateX(-50%);
+  -moz-transition: 0.4s;
+  -moz-transform: translateX(-50%);
+  border-radius: 100%;
+  background: radial-gradient(rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0));
+}
+
+.letter-image:hover .shadow {
+  width: 280px;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .letter-image {
+    transform: scale(0.9);
+  }
+}

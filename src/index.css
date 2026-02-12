@@ -2,224 +2,21 @@
 
 @import "tailwindcss";
 
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
 @theme {
   --font-display: "Outfit", sans-serif;
   --font-sans: "Inter", "system-ui", sans-serif;
 
   /* Premium Mild Color Palette - Sophisticated Slate & Ivory */
   --color-primary-50: #f8fafc;
-  --color-primary-100: #f1f5fslate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9 slate-9
-    slate-9 slate-9 slate-9 slate-9 slate-9 f9;
+  --color-primary-100: #f1f5f9;
   --color-primary-200: #e2e8f0;
   --color-primary-300: #cbd5e1;
   --color-primary-400: #94a3b8;
@@ -249,19 +46,33 @@
 @layer base {
   * {
     @apply border-slate-200 box-border;
-    transition: background-color 0.2s ease, border-color 0.2s ease,
-      transform 0.2s ease;
+  }
+
+  button, 
+  a, 
+  input[type="button"], 
+  input[type="submit"], 
+  input[type="reset"],
+  select,
+  [role="button"] {
+    cursor: pointer;
   }
 
   html {
     scroll-behavior: smooth;
     font-size: 16px;
+    /* Responsive font scale */
+    @screen sm { font-size: 16px; }
+    @screen md { font-size: 17px; }
+    @screen lg { font-size: 18px; }
   }
 
   body {
     @apply bg-white text-slate-800 font-sans antialiased overflow-x-hidden;
     /* Clean, stable background */
     background: #ffffff;
+    width: 100%;
+    position: relative;
   }
 
   ::selection {
@@ -280,15 +91,15 @@
 
 @layer components {
   .section-container {
-    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 md:py-28 relative z-10;
+    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-12 md:py-20 relative z-10;
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 text-slate-900 leading-[1.2] tracking-tight;
+    @apply text-4xl md:text-5xl font-bold font-display mb-8 text-slate-900 leading-[1.1] tracking-tight;
   }
 
   .section-subtitle {
-    @apply text-base md:text-lg text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed font-normal;
+    @apply text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed font-light;
   }
 
   .btn-primary {
