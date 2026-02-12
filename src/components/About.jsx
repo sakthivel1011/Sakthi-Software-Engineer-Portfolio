@@ -54,7 +54,7 @@ const FoldingStats = ({ className }) => {
   const stats = [
     {
       label: "Experience",
-      value: "1.5+ Years",
+      value: "1.7+ Years",
       color: "bg-blue-50 text-blue-600",
     },
     {

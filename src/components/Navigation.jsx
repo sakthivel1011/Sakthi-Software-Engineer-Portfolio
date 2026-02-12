@@ -117,7 +117,10 @@ const Navigation = () => {
           right: window.innerWidth >= 768 || isExpanded ? "auto" : "1.5rem",
           left: window.innerWidth >= 768 || isExpanded ? "50%" : "auto",
         }}
-        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+        transition={{
+          duration: window.innerWidth < 768 ? 0.3 : 0.5,
+          ease: window.innerWidth < 768 ? "easeOut" : [0.23, 1, 0.32, 1],
+        }}
         className="fixed z-[100] top-6 bg-white/95 md:bg-white/95 md:backdrop-blur-md shadow-lg border border-slate-200/50 rounded-full overflow-hidden"
       >
         <div className="px-4 py-3">
@@ -148,8 +151,8 @@ const Navigation = () => {
                     href={link.href}
                     onClick={(e) => scrollToSection(e, link.href)}
                     className={`transition-all duration-300 font-medium text-sm relative group whitespace-nowrap ${isActive
-                        ? "text-blue-600"
-                        : "text-slate-500 hover:text-slate-900"
+                      ? "text-blue-600"
+                      : "text-slate-500 hover:text-slate-900"
                       }`}
                   >
                     {link.name}
@@ -175,8 +178,8 @@ const Navigation = () => {
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`p-2.5 rounded-full transition-all duration-500 md:hidden flex items-center justify-center ${isMobileMenuOpen
-                    ? "bg-slate-900 text-white rotate-90"
-                    : "text-slate-700 hover:bg-slate-100"
+                  ? "bg-slate-900 text-white rotate-90"
+                  : "text-slate-700 hover:bg-slate-100"
                   }`}
               >
                 {isMobileMenuOpen ? (
@@ -207,7 +210,10 @@ const Navigation = () => {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              transition={{
+                duration: 0.4,
+                ease: [0.32, 0, 0.67, 0], // Fast, predictable curve
+              }}
               className="absolute top-0 right-0 bottom-0 w-[85%] max-w-[320px] bg-white shadow-2xl flex flex-col"
             >
               {/* Drawer Header */}
@@ -241,16 +247,19 @@ const Navigation = () => {
                         animate={{
                           opacity: 1,
                           x: 0,
-                          transition: { delay: i * 0.05 },
+                          transition: {
+                            delay: window.innerWidth < 768 ? 0 : i * 0.05,
+                            duration: 0.2,
+                          },
                         }}
                         onClick={(e) => scrollToSection(e, link.href)}
                         className={`flex items-center justify-between px-6 py-4 rounded-2xl transition-all duration-300 font-medium ${isActive
-                            ? "bg-blue-50 text-blue-600"
-                            : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                          ? "bg-blue-50 text-blue-600"
+                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                           }`}
                       >
                         <span className="text-lg">{link.name}</span>
-                        {isActive && (
+                        {isActive && window.innerWidth >= 768 && (
                           <motion.div
                             layoutId="drawerActive"
                             className="w-1.5 h-1.5 bg-blue-600 rounded-full"

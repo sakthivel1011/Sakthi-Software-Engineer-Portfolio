@@ -82,22 +82,22 @@ const CertificateCarousel = ({ certificates, onSelect, onViewAll }) => {
 
             if (isCenter) {
               x = 0;
-              z = isMobile ? 80 : 150;
+              z = isMobile ? 0 : 150; // Zero depth on mobile
               rotateY = 0;
               opacity = 1;
               scale = 1;
             } else if (isLeft) {
-              x = isMobile ? -160 : -280;
-              z = isMobile ? -80 : -100;
-              rotateY = isMobile ? 35 : 35;
-              opacity = 0.3;
-              scale = 0.75;
+              x = isMobile ? -140 : -280;
+              z = isMobile ? 0 : -100; // Zero depth on mobile
+              rotateY = isMobile ? 0 : 35; // No rotation on mobile
+              opacity = isMobile ? 0 : 0.3; // Hide side cards on extreme mobile for max FPS
+              scale = 0.8;
             } else if (isRight) {
-              x = isMobile ? 160 : 280;
-              z = isMobile ? -80 : -100;
-              rotateY = isMobile ? -35 : -35;
-              opacity = 0.3;
-              scale = 0.75;
+              x = isMobile ? 140 : 280;
+              z = isMobile ? 0 : -100; // Zero depth on mobile
+              rotateY = isMobile ? 0 : -35; // No rotation on mobile
+              opacity = isMobile ? 0 : 0.3; // Hide side cards on extreme mobile for max FPS
+              scale = 0.8;
             }
 
             return (
@@ -121,7 +121,11 @@ const CertificateCarousel = ({ certificates, onSelect, onViewAll }) => {
                     : "0 10px 30px -5px rgba(0,0,0,0.1)",
                 }}
                 exit={{ opacity: 0, scale: 0.5, z: -200 }}
-                transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                transition={
+                  isMobile
+                    ? { duration: 0.4, ease: "circOut" }
+                    : { type: "spring", stiffness: 120, damping: 20 }
+                }
                 className={`absolute w-[240px] sm:w-[320px] md:w-[450px] aspect-[1.414/1] bg-white rounded-sm border-[2px] sm:border-[3px] border-slate-900 shadow-xl cursor-pointer group ${isCenter ? "z-20" : "z-10"
                   }`}
                 onClick={() => (isCenter ? onSelect(cert) : setIndex(i))}

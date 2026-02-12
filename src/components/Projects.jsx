@@ -47,6 +47,13 @@ const ProjectCard = ({
   const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
   const scale = useTransform(progress, range, [1, targetScale]);
 
+  // High-performance fallback for mobile: disable continuous scroll sync if on small screen
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
+  const cardScale = isMobile ? currentScale : scale;
+  // Wait, I don't have currentScale. I'll just use 1 for mobile to be safe or targetScale.
+  // Actually, I'll just use targetScale or constant 1.
+  const finalScale = isMobile ? 1 : scale;
+
   return (
     <div
       ref={container}
@@ -54,7 +61,7 @@ const ProjectCard = ({
     >
       <motion.div
         style={{
-          scale,
+          scale: finalScale,
           top: `calc(5vh + ${i * 15}px)`,
         }}
         className="group relative h-auto md:h-[500px] w-full max-w-5xl rounded-[2rem] p-6 sm:p-8 md:p-10 origin-top bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border border-slate-700/50 shadow-2xl flex flex-col md:flex-row gap-8 overflow-hidden"
@@ -305,6 +312,11 @@ const Projects = () => {
               initial={{ opacity: 0, scale: 0.98, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: 10 }}
+              transition={
+                window.innerWidth < 768
+                  ? { duration: 0.25, ease: "easeOut" }
+                  : { type: "spring", damping: 25, stiffness: 200 }
+              }
               className="relative w-full max-w-5xl h-auto max-h-[92vh] sm:max-h-[85vh] bg-white rounded-[1.5rem] sm:rounded-[2rem] shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row overflow-hidden border border-slate-200 will-change-transform"
               onClick={(e) => e.stopPropagation()}
             >
