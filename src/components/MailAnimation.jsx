@@ -3,11 +3,16 @@ import "./MailAnimation.css";
 import { motion } from "framer-motion";
 
 const MailAnimation = ({ email = "sakthivel1011@gmail.com" }) => {
+  const [isInView, setIsInView] = React.useState(false);
+
   return (
     <div className="flex flex-col items-center py-2 w-full transform md:scale-90 lg:scale-100 transition-all duration-500 ease-out">
-      <a
+      <motion.a
         href={`mailto:${email}`}
-        className="letter-image block"
+        onViewportEnter={() => setIsInView(true)}
+        onViewportLeave={() => setIsInView(false)}
+        viewport={{ amount: 0.8 }}
+        className={`letter-image block ${isInView ? "is-in-view" : ""}`}
         aria-label="Send email"
       >
         <div className="animated-mail">
@@ -34,7 +39,7 @@ const MailAnimation = ({ email = "sakthivel1011@gmail.com" }) => {
           <div className="left-fold"></div>
         </div>
         <div className="shadow"></div>
-      </a>
+      </motion.a>
       {/* Mobile Hint */}
       <motion.p
         animate={{ opacity: [0.4, 1, 0.4], y: [0, 5, 0] }}

@@ -82,12 +82,27 @@ const VanishText = () => {
 };
 
 const Hero = () => {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
   return (
     <section
       id="home"
-      className="h-screen flex items-center justify-center relative overflow-hidden"
+      className="h-screen flex items-center justify-center relative overflow-hidden bg-slate-900"
     >
-      <ThreeBackground />
+      {isDesktop && <ThreeBackground />}
+
+      {/* Premium Gradient Fallback for Mobile */}
+      {!isDesktop && (
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.15),transparent_70%)]" />
+      )}
+
       <div className="section-container relative z-10 text-center px-4 h-full flex flex-col justify-center max-w-4xl mx-auto">
         <div className="flex flex-col items-center justify-center flex-grow pt-20">
           {/* Status Badge */}

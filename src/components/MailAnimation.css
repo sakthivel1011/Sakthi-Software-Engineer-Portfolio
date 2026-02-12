@@ -110,14 +110,16 @@
   /* slate-500 */
 }
 
-/* Hover State */
-.letter-image:hover .animated-mail {
+/* Hover & View State */
+.letter-image:hover .animated-mail,
+.letter-image.is-in-view .animated-mail {
   transform: translateY(0);
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
 }
 
-.letter-image:hover .animated-mail .top-fold {
+.letter-image:hover .animated-mail .top-fold,
+.letter-image.is-in-view .animated-mail .top-fold {
   transition:
     transform 0.4s,
     z-index 0.2s;
@@ -133,7 +135,8 @@
   z-index: 0;
 }
 
-.letter-image:hover .animated-mail .letter {
+.letter-image:hover .animated-mail .letter,
+.letter-image.is-in-view .animated-mail .letter {
   height: 120px;
   bottom: 95px;
   /* Significant lift to pop out of envelope */
@@ -157,7 +160,8 @@
       rgba(0, 0, 0, 0));
 }
 
-.letter-image:hover .shadow {
+.letter-image:hover .shadow,
+.letter-image.is-in-view .shadow {
   width: 280px;
   opacity: 0.8;
 }

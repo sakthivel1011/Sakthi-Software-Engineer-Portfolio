@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   SiReact,
   SiNextdotjs,
@@ -37,8 +37,7 @@ const GalaxyParticles = () => {
 
     const createParticles = () => {
       particles = [];
-      const isMobile = window.innerWidth < 1024;
-      const count = isMobile ? 40 : 120;
+      const count = 120;
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
@@ -54,34 +53,23 @@ const GalaxyParticles = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const isMobile = window.innerWidth < 1024;
 
       particles.forEach((p, i) => {
-        // Update position
         p.x += p.speedX;
         p.y += p.speedY;
 
-        // Wrap around edges
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        // Draw particle with glow (Expensive - disabled on mobile)
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `hsla(${p.hue}, 80%, 70%, ${p.opacity})`;
-
-        if (!isMobile) {
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = `hsla(${p.hue}, 80%, 60%, 0.5)`;
-        } else {
-          ctx.shadowBlur = 0; // Performance gain on mobile
-        }
-
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = `hsla(${p.hue}, 80%, 60%, 0.5)`;
         ctx.fill();
 
-        // Draw connections
         particles.slice(i + 1).forEach((p2) => {
           const dx = p.x - p2.x;
           const dy = p.y - p2.y;
@@ -125,7 +113,15 @@ const GalaxyParticles = () => {
 };
 
 const Skills = () => {
-  // Skills organized by category
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
   const skillCategories = [
     {
       name: "Frontend",
@@ -188,17 +184,14 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="skills-section min-h-screen flex flex-col justify-center py-16 relative"
+      className="skills-section min-h-screen flex flex-col justify-center py-16 relative bg-[#050816]"
     >
-      {/* Galaxy Particles Background */}
-      <GalaxyParticles />
+      {isDesktop && <GalaxyParticles />}
 
-      {/* Gradient Orbs */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="section-container relative z-10">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -215,7 +208,6 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        {/* Skills by Category */}
         <div className="space-y-10">
           {skillCategories.map((category, catIndex) => (
             <motion.div
@@ -225,7 +217,6 @@ const Skills = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: catIndex * 0.1 }}
             >
-              {/* Category Header */}
               <div className="flex items-center gap-4 mb-6">
                 <h3 className="text-sm font-bold text-blue-400 uppercase tracking-[0.2em]">
                   {category.name}
@@ -233,7 +224,6 @@ const Skills = () => {
                 <div className="h-px flex-grow bg-gradient-to-r from-blue-500/30 to-transparent" />
               </div>
 
-              {/* Skills Grid */}
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -253,7 +243,6 @@ const Skills = () => {
                         : ""
                         }`}
                     >
-                      {/* Skill Level Badge - Only for Basic */}
                       {skill.level === "Basic" && (
                         <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full text-[0.6rem] font-bold uppercase tracking-wider border bg-slate-700/50 text-slate-400 border-slate-600/30">
                           {skill.level}
@@ -276,7 +265,6 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* AI Toolkit Subsection */}
         <Tools />
       </div>
     </section>

@@ -80,7 +80,7 @@ const FoldingStats = ({ className }) => {
         {/* Column 1 - Up (starts at 0, moves up to -33.33%) */}
         <div className="flex flex-col gap-4 h-48 overflow-hidden mask-gradient-y">
           <motion.div
-            animate={{ y: ["0%", "-33.33%"] }}
+            animate={window.innerWidth >= 1024 ? { y: ["0%", "-33.33%"] } : { y: "0%" }}
             transition={{
               duration: 8, // Faster, smoother scroll
               repeat: Infinity,
@@ -109,7 +109,7 @@ const FoldingStats = ({ className }) => {
         {/* Column 2 - Down (starts at -33.33%, moves down to 0%) */}
         <div className="flex flex-col gap-4 h-48 overflow-hidden mask-gradient-y">
           <motion.div
-            animate={{ y: ["-33.33%", "0%"] }}
+            animate={window.innerWidth >= 1024 ? { y: ["-33.33%", "0%"] } : { y: "-33.33%" }}
             transition={{
               duration: 8, // Synced speed
               repeat: Infinity,
