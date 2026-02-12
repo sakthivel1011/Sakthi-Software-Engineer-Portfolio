@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sakthivel1011.github.io/Sakthi-s-Professional-Portfolio",
+  "homepage": "https://sakthivel1011.github.io/Sakthi-Software-Engineer-Portfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
