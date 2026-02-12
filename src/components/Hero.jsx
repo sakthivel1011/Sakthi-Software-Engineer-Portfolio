@@ -124,7 +124,7 @@ const Hero = () => {
             View Projects <HiArrowRight className="text-lg" />
           </a>
           <a
-            href="https://drive.google.com/file/d/15r93GRymamJ8EJxIt9T_2rukOfv0a6R4/view?usp=drivesdk"
+            href="https://drive.google.com/file/d/1zsVi8trp1MzeQkCQMyQu1sFsCScB-HBI/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary w-full sm:w-auto justify-center"
