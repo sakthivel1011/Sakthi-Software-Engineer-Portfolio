@@ -82,44 +82,21 @@ const VanishText = () => {
 };
 
 const Hero = () => {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
-  }, []);
-
   return (
     <section
       id="home"
-      className="h-screen flex items-center justify-center relative overflow-hidden bg-slate-900"
+      className="h-screen flex items-center justify-center relative overflow-hidden"
     >
-      {isDesktop && <ThreeBackground />}
-
-      {/* Premium Gradient Fallback for Mobile */}
-      {!isDesktop && (
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.15),transparent_70%)]" />
-      )}
-
+      <ThreeBackground />
       <div className="section-container relative z-10 text-center px-4 h-full flex flex-col justify-center max-w-4xl mx-auto">
         <div className="flex flex-col items-center justify-center flex-grow pt-20">
-          {/* Status Badge - Synced Premium Design */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(16,185,129,0.05)]"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
-            </span>
-            <span className="text-[10px] md:text-xs font-bold text-emerald-400 tracking-[0.1em] uppercase">
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50/10 border border-slate-200/20 mb-6 backdrop-blur-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]" />
+            <span className="text-xs font-medium text-slate-200 tracking-wide uppercase">
               Available for work
             </span>
-          </motion.div>
+          </div>
 
           {/* Main Heading with Vanish Text */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display mb-4 text-slate-100 leading-[1.1] tracking-tight">

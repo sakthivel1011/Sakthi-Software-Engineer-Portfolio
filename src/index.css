@@ -64,16 +64,15 @@
     font-size: 16px;
 
     /* Responsive font scale */
-    /* Standard media queries instead of @screen for better compatibility */
-    @media (min-width: 640px) {
+    @screen sm {
       font-size: 16px;
     }
 
-    @media (min-width: 768px) {
+    @screen md {
       font-size: 17px;
     }
 
-    @media (min-width: 1024px) {
+    @screen lg {
       font-size: 18px;
     }
   }
@@ -84,8 +83,6 @@
     background: #ffffff;
     width: 100%;
     position: relative;
-    -webkit-text-size-adjust: 100%;
-    /* Better text scaling on mobile */
   }
 
   ::selection {
@@ -181,41 +178,27 @@
 
   /* Performance Boost Utilities */
   .gpu {
-    transform: translate3d(0, 0, 0);
+    transform: translateZ(0);
     backface-visibility: hidden;
-    perspective: 1000px;
+    perspective: 1000;
     will-change: transform, opacity;
   }
 
-  /* Extreme Mobile Performance Audit */
-  @media (max-width: 1024px) {
+  /* Reduce filter complexity on mobile */
+  @media (max-width: 768px) {
     * {
       @apply duration-150;
       /* Snappier transitions on mobile */
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
-    /* Aggressively disable backdrop-blur on all mobile elements */
-    .backdrop-blur-sm,
-    .backdrop-blur-md,
-    .backdrop-blur-lg,
-    .backdrop-blur-xl,
-    .backdrop-blur-2xl,
-    [class*="backdrop-blur"] {
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      background-color: rgba(255, 255, 255, 0.98) !important;
+    .backdrop-blur-xl {
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
     }
 
-    /* Dark mode variants logic if needed */
-    .bg-slate-950\/80 {
-      background-color: rgba(2, 6, 23, 0.95) !important;
-    }
-
-    /* Disable complex animations that cause layout shifts on mid-range phones */
-    .animate-float,
-    .animate-subtle-pulse {
-      animation: none !important;
+    .backdrop-blur-2xl {
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
     }
   }
 }

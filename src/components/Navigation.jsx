@@ -118,7 +118,7 @@ const Navigation = () => {
           left: window.innerWidth >= 768 || isExpanded ? "50%" : "auto",
         }}
         transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-        className="fixed z-[100] top-6 bg-white/95 md:bg-white/95 md:backdrop-blur-md shadow-lg border border-slate-200/50 rounded-full overflow-hidden"
+        className="fixed z-[100] top-6 bg-white/95 backdrop-blur-md shadow-lg border border-slate-200/50 rounded-full overflow-hidden"
       >
         <div className="px-4 py-3">
           <div className="flex items-center justify-between">
@@ -148,8 +148,8 @@ const Navigation = () => {
                     href={link.href}
                     onClick={(e) => scrollToSection(e, link.href)}
                     className={`transition-all duration-300 font-medium text-sm relative group whitespace-nowrap ${isActive
-                      ? "text-blue-600"
-                      : "text-slate-500 hover:text-slate-900"
+                        ? "text-blue-600"
+                        : "text-slate-500 hover:text-slate-900"
                       }`}
                   >
                     {link.name}
@@ -175,8 +175,8 @@ const Navigation = () => {
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`p-2.5 rounded-full transition-all duration-500 md:hidden flex items-center justify-center ${isMobileMenuOpen
-                  ? "bg-slate-900 text-white rotate-90"
-                  : "text-slate-700 hover:bg-slate-100"
+                    ? "bg-slate-900 text-white rotate-90"
+                    : "text-slate-700 hover:bg-slate-100"
                   }`}
               >
                 {isMobileMenuOpen ? (
@@ -199,7 +199,7 @@ const Navigation = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="absolute inset-0 bg-slate-900/60"
+              className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
             />
 
             {/* Side Drawer */}
@@ -245,8 +245,8 @@ const Navigation = () => {
                         }}
                         onClick={(e) => scrollToSection(e, link.href)}
                         className={`flex items-center justify-between px-6 py-4 rounded-2xl transition-all duration-300 font-medium ${isActive
-                          ? "bg-blue-50 text-blue-600"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                            ? "bg-blue-50 text-blue-600"
+                            : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                           }`}
                       >
                         <span className="text-lg">{link.name}</span>
