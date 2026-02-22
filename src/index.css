@@ -138,6 +138,15 @@
 }
 
 @layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -184,12 +193,32 @@
     will-change: transform, opacity;
   }
 
-  /* Reduce filter complexity on mobile */
+  /* Disable ALL transitions on mobile for performance */
   @media (max-width: 768px) {
-    * {
-      @apply duration-150;
-      /* Snappier transitions on mobile */
+
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
     }
+
+    /* Whitelist: Allow transitions ONLY on essential elements */
+    .allow-transition,
+    .allow-transition *,
+    [data-allow-transition],
+    [data-allow-transition] * {
+      transition: all 0.3s ease !important;
+    }
+
+    /* Keep project slide swipe working */
+    .swiper-wrapper,
+    .swiper-slide {
+      transition: transform 0.3s ease !important;
+    }
+
+    /* Keep navbar drawer animation working (framer-motion uses inline styles) */
 
     .backdrop-blur-xl {
       backdrop-filter: blur(8px) !important;
@@ -199,6 +228,11 @@
     .backdrop-blur-2xl {
       backdrop-filter: blur(12px) !important;
       -webkit-backdrop-filter: blur(12px) !important;
+    }
+
+    /* Reduce heavy blur effects on mobile */
+    .blur-3xl {
+      filter: blur(24px) !important;
     }
   }
 }

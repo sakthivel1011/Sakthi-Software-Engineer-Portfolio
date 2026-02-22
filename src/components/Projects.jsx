@@ -60,10 +60,10 @@ const ProjectCard = ({
         className="group relative h-auto md:h-[500px] w-full max-w-5xl rounded-[2rem] p-6 sm:p-8 md:p-10 origin-top bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border border-slate-700/50 shadow-2xl flex flex-col md:flex-row gap-8 overflow-hidden"
       >
         {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
         {/* Decorative elements */}
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700" />
+        <div className="absolute -top-20 -right-20 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all duration-700" />
         <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all duration-700" />
 
         {/* Individual Eye Icon - Top Right of Card */}
@@ -232,7 +232,7 @@ const Projects = () => {
           viewport={{ once: true }}
         >
           <h2 className="section-title mb-6">
-            Featured <span className="text-blue-600">Projects</span>
+            Featured <span className="text-violet-600">Projects</span>
           </h2>
           <p className="section-subtitle mb-0">
             A curated selection of my technical works where architecture meets
@@ -335,7 +335,7 @@ const Projects = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 }}
                     >
-                      <h4 className="text-[8px] sm:text-[9px] font-black text-blue-600 uppercase tracking-[0.3em] mb-1">
+                      <h4 className="text-[8px] sm:text-[9px] font-black text-violet-600 uppercase tracking-[0.3em] mb-1">
                         Project Component
                       </h4>
                       <h3 className="text-xl sm:text-2xl lg:text-4xl font-bold font-display text-slate-900 tracking-tight leading-tight">
@@ -374,7 +374,7 @@ const Projects = () => {
                               key={tech}
                               className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-xl border border-slate-100"
                             >
-                              <div className="text-blue-500 scale-90">
+                              <div className="text-violet-500 scale-90">
                                 {techIcons[tech] || <HiEye className="w-3.5 h-3.5" />}
                               </div>
                               <span className="text-[9px] font-bold text-slate-700 uppercase tracking-wider">
@@ -398,7 +398,7 @@ const Projects = () => {
                             href={selectedProject.liveLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto sm:min-w-[160px] inline-flex items-center justify-center gap-2.5 px-5 py-3.5 bg-blue-600 text-white rounded-2xl text-[10px] sm:text-xs font-bold hover:bg-blue-500 transition-all active:scale-95 shadow-xl shadow-blue-500/20 order-1 sm:order-2"
+                            className="w-full sm:w-auto sm:min-w-[160px] inline-flex items-center justify-center gap-2.5 px-5 py-3.5 bg-violet-600 text-white rounded-2xl text-[10px] sm:text-xs font-bold hover:bg-violet-500 transition-all active:scale-95 shadow-xl shadow-violet-500/20 order-1 sm:order-2"
                           >
                             <FaExternalLinkAlt size={14} />
                             Live Experience
@@ -420,7 +420,7 @@ const Projects = () => {
                 </div>
 
                 {/* Bottom Deco (Desktop Only) */}
-                <div className="hidden lg:block h-1.5 w-full bg-gradient-to-r from-blue-500 via-indigo-600 to-blue-500 shrink-0" />
+                <div className="hidden lg:block h-1.5 w-full bg-gradient-to-r from-violet-500 via-indigo-600 to-violet-500 shrink-0" />
               </div>
             </motion.div>
           </div>

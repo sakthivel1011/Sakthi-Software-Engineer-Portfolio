@@ -87,7 +87,7 @@ const Contact = () => {
             y: [0, 15, 0],
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[10%] -left-[5%] w-[50%] h-[50%] bg-blue-100/30 rounded-full blur-[100px]"
+          className="absolute -top-[10%] -left-[5%] w-[50%] h-[50%] bg-violet-100/30 rounded-full blur-[100px]"
         />
         <motion.div
           animate={{
@@ -110,7 +110,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <h2 className="section-title mb-4">
-              Get In <span className="text-blue-600">Touch</span>
+              Get In <span className="text-violet-600">Touch</span>
             </h2>
             <p className="text-slate-500 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
               Reach out for collaborations or just to say hello. I'm always looking for interesting projects.
@@ -169,7 +169,7 @@ const Contact = () => {
             className="lg:col-span-8 flex"
           >
             <motion.div
-              className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl shadow-blue-500/5 border border-slate-100 flex-grow"
+              className="bg-white rounded-[2rem] p-8 md:p-10 shadow-xl shadow-violet-500/5 border border-slate-100 flex-grow"
             >
               <form onSubmit={handleSubmit} className="h-full flex flex-col justify-between">
                 <div className="space-y-6">
@@ -223,7 +223,7 @@ const Contact = () => {
                     whileTap={{ scale: 0.99 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-3 group shadow-lg"
+                    className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-violet-600 transition-all duration-300 flex items-center justify-center gap-3 group shadow-lg"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">

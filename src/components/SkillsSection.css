@@ -1,250 +1,234 @@
-/* Skills Section - Premium Futuristic Theme */
+/* Skills Section - Galaxy / Deep Space Theme */
 
-/* Dark Theme Background */
+/* Deep Space Background */
 .skills-section {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: #050816;
   position: relative;
   overflow: hidden;
 }
 
-/* Animated Grid Background */
-.skills-grid-bg {
+/* Nebula Gradient Overlays */
+.skills-bg-gradient {
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridMove 20s linear infinite;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(88, 28, 135, 0.15), transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(15, 82, 186, 0.12), transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(139, 92, 246, 0.08), transparent 40%),
+    radial-gradient(ellipse at 70% 60%, rgba(6, 182, 212, 0.06), transparent 35%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-@keyframes gridMove {
+/* Starfield Canvas */
+.skills-starfield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Decorative nebula blobs */
+.skills-nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.skills-nebula--purple {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent 70%);
+  top: 10%;
+  left: -5%;
+  animation: nebula-drift 20s ease-in-out infinite alternate;
+}
+
+.skills-nebula--blue {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
+  bottom: 15%;
+  right: -5%;
+  animation: nebula-drift 25s ease-in-out infinite alternate-reverse;
+}
+
+.skills-nebula--cyan {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
+  top: 50%;
+  left: 40%;
+  animation: nebula-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes nebula-drift {
   0% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(1);
   }
 
   100% {
-    transform: translate(60px, 60px);
+    transform: translate(30px, -20px) scale(1.1);
   }
 }
 
-/* Floating Particles */
-.skills-particles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.skills-particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(59, 130, 246, 0.4);
-  border-radius: 50%;
-  animation: floatParticle 15s ease-in-out infinite;
-}
-
-.skills-particle:nth-child(1) {
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.skills-particle:nth-child(2) {
-  left: 25%;
-  animation-delay: 2s;
-}
-
-.skills-particle:nth-child(3) {
-  left: 40%;
-  animation-delay: 4s;
-}
-
-.skills-particle:nth-child(4) {
-  left: 55%;
-  animation-delay: 6s;
-}
-
-.skills-particle:nth-child(5) {
-  left: 70%;
-  animation-delay: 8s;
-}
-
-.skills-particle:nth-child(6) {
-  left: 85%;
-  animation-delay: 10s;
-}
-
-@keyframes floatParticle {
+/* Animated twinkling stars */
+@keyframes twinkle {
 
   0%,
   100% {
-    transform: translateY(100vh) scale(0);
-    opacity: 0;
+    opacity: 0.3;
   }
 
-  10% {
+  50% {
     opacity: 1;
-    transform: translateY(90vh) scale(1);
-  }
-
-  90% {
-    opacity: 1;
-    transform: translateY(10vh) scale(1);
-  }
-
-  100% {
-    transform: translateY(-10vh) scale(0);
-    opacity: 0;
   }
 }
 
-/* Skill Card */
-.skill-card {
-  position: relative;
-  background: linear-gradient(145deg,
-      rgba(30, 41, 59, 0.8),
-      rgba(15, 23, 42, 0.9));
-  border: 1px solid rgba(59, 130, 246, 0.1);
-  border-radius: 12px;
-  padding: 1rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  text-align: center;
-  cursor: pointer;
-}
-
-.skill-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-      transparent 0%,
-      rgba(59, 130, 246, 0.05) 50%,
-      transparent 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-/* Hover Glow Effect */
-.skill-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow:
-    0 20px 40px -15px rgba(0, 0, 0, 0.7),
-    0 0 20px -5px rgba(59, 130, 246, 0.2),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-  background: linear-gradient(145deg,
-      rgba(30, 41, 59, 0.9),
-      rgba(15, 23, 42, 0.95));
-}
-
-.skill-card:hover::before {
-  opacity: 1;
-}
-
-/* Light Sweep Effect */
-.skill-card::after {
-  content: "";
+.skills-stars {
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.1),
-      transparent);
-  transition: left 0.5s ease;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.skill-card:hover::after {
-  left: 100%;
-}
-
-/* Skill Icon Container */
-.skill-icon-container {
-  position: relative;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg,
-      rgba(59, 130, 246, 0.15),
-      rgba(139, 92, 246, 0.1));
-  border-radius: 14px;
-  margin: 0 auto 1rem auto;
-  transition: all 0.3s ease;
-}
-
-.skill-card:hover .skill-icon-container {
-  transform: scale(1.05);
-  /* Subtle scale, no rotation */
-  background: linear-gradient(135deg,
-      rgba(59, 130, 246, 0.2),
-      rgba(139, 92, 246, 0.15));
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Skill Name */
-.skill-name {
-  color: #94a3b8;
-  font-weight: 800;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.skill-card:hover .skill-name {
-  color: #ffffff;
+.skills-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0.5;
 }
 
 /* Category Badge */
-.skill-category {
+.skill-category-title {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: rgba(59, 130, 246, 0.15);
-  border-radius: 9999px;
-  color: #60a5fa;
-  font-size: 0.7rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #c4b5fd, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+/* Premium Image-based Skill Card - Galaxy Glass Style */
+.skill-card-img {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.skill-card-img:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow:
+    0 10px 25px -5px rgba(139, 92, 246, 0.2),
+    0 0 15px rgba(139, 92, 246, 0.1);
+  z-index: 10;
+}
+
+/* Icon Container */
+.skill-icon-box {
+  width: 65%;
+  height: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.skill-card-img:hover .skill-icon-box {
+  transform: scale(1.05);
+}
+
+/* Tooltip Name Style */
+.skill-name-tooltip {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(15, 23, 42, 0.95);
+  color: #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  pointer-events: none;
+  z-index: 20;
 }
 
-/* Gradient Underline */
-.skill-underline {
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  margin-top: 0.75rem;
-  border-radius: 1px;
-  transition: width 0.4s ease;
+/* Arrow for tooltip */
+.skill-name-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(15, 23, 42, 0.95);
+  border-left: 1px solid rgba(139, 92, 246, 0.3);
+  border-top: 1px solid rgba(139, 92, 246, 0.3);
 }
 
-.skill-card:hover .skill-underline {
-  width: 100%;
+.skill-card-img:hover .skill-name-tooltip,
+.skill-card-img:active .skill-name-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
-/* Responsive Grid */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .skill-card {
-    padding: 0.75rem;
+  .skill-card-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 14px;
   }
 
-  .skill-icon-container {
-    width: 52px;
-    height: 52px;
-    margin-bottom: 0.5rem;
+  .skills-nebula {
+    filter: blur(60px);
+    opacity: 0.25;
   }
+}
 
-  .skill-name {
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
+@media (max-width: 640px) {
+  .skill-card-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
   }
 }

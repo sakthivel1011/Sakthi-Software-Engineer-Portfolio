@@ -62,7 +62,7 @@ const ThreeBackground = () => {
             <MovingShape position={[4, -1, -8]} color="#a855f7" geometry={Sphere} />
             <MovingShape
               position={[-5, -4, -10]}
-              color="#3b82f6"
+              color="#8b5cf6"
               geometry={Torus}
             />
           </>

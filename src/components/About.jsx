@@ -55,7 +55,7 @@ const FoldingStats = ({ className }) => {
     {
       label: "Experience",
       value: "1.7+ Years",
-      color: "bg-blue-50 text-blue-600",
+      color: "bg-violet-50 text-violet-600",
     },
     {
       label: "Projects",
@@ -158,7 +158,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <h2 className="section-title mb-4">
-              About <span className="text-blue-600">Me</span>
+              About <span className="text-violet-600">Me</span>
             </h2>
           </motion.div>
         </div>
@@ -187,8 +187,8 @@ const About = () => {
               {/* Key Highlights */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
-                    <HiCode className="text-blue-700 text-xl" />
+                  <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center shrink-0">
+                    <HiCode className="text-violet-700 text-xl" />
                   </div>
                   <p className="text-xs md:text-sm font-semibold uppercase tracking-wide text-slate-700">
                     React & React Native Specialist
@@ -196,8 +196,8 @@ const About = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
-                    <HiChip className="text-blue-700 text-xl" />
+                  <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center shrink-0">
+                    <HiChip className="text-violet-700 text-xl" />
                   </div>
                   <p className="text-xs md:text-sm font-semibold uppercase tracking-wide text-slate-700">
                     Scalable System Design
@@ -205,8 +205,8 @@ const About = () => {
                 </div>
 
                 <div className="flex items-center gap-4 lg:hidden xl:flex">
-                  <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
-                    <HiLightningBolt className="text-blue-700 text-xl" />
+                  <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center shrink-0">
+                    <HiLightningBolt className="text-violet-700 text-xl" />
                   </div>
                   <p className="text-xs md:text-sm font-semibold uppercase tracking-wide text-slate-700">
                     Performance-First Mindset
@@ -225,7 +225,7 @@ const About = () => {
             {/* Background Decorative Lines */}
             <svg
               className="absolute inset-0 -z-10 w-full h-full 
-             text-blue-200/60 pointer-events-none"
+             text-violet-200/60 pointer-events-none"
               viewBox="0 0 100 100"
               fill="none"
               preserveAspectRatio="none"
@@ -267,7 +267,7 @@ const About = () => {
               >
                 {/* Decorative elements */}
                 <div className="absolute top-2 left-2 flex gap-1">
-                  <div className="w-2.5 h-2.5 rounded-full bg-blue-400"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-violet-400"></div>
                   <div className="w-2.5 h-2.5 rounded-full bg-indigo-400"></div>
                   <div className="w-2.5 h-2.5 rounded-full bg-purple-400"></div>
                 </div>
@@ -277,7 +277,7 @@ const About = () => {
                   <div className="h-2 w-[90%] bg-slate-100 rounded-full"></div>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  <div className="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] rounded font-bold">
+                  <div className="px-2 py-1 bg-violet-50 text-violet-600 text-[10px] rounded font-bold">
                     React
                   </div>
                 </div>

@@ -1,161 +1,75 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiJavascript,
-  SiTypescript,
-  SiNodedotjs,
-  SiPostgresql,
-  SiMongodb,
-  SiGit,
-  SiHtml5,
-  SiCss3,
-  SiPython,
-  SiOpenai,
-  SiExpress,
-  SiMysql,
-} from "react-icons/si";
-import { HiCode } from "react-icons/hi";
+import { useEffect, useState, useRef } from "react";
 import Tools from "./Tools";
 import "./SkillsSection.css";
 
-// Galaxy Particles Canvas Component
-const GalaxyParticles = () => {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    let animationId;
-    let particles = [];
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-
-    const createParticles = () => {
-      particles = [];
-      const count = 120;
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.3,
-          opacity: Math.random() * 0.5 + 0.2,
-          hue: Math.random() * 60 + 200, // Blue to purple range
-        });
-      }
-    };
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((p, i) => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 80%, 70%, ${p.opacity})`;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = `hsla(${p.hue}, 80%, 60%, 0.5)`;
-        ctx.fill();
-
-        particles.slice(i + 1).forEach((p2) => {
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `hsla(220, 70%, 60%, ${0.1 * (1 - dist / 100)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        });
-      });
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    resize();
-    createParticles();
-    animate();
-
-    window.addEventListener("resize", () => {
-      resize();
-      createParticles();
-    });
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.6 }}
-    />
-  );
+// Generate random stars for the background
+const generateStars = (count) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    size: Math.random() * 2 + 1,
+    duration: `${Math.random() * 4 + 2}s`,
+    delay: `${Math.random() * 5}s`,
+  }));
 };
 
-const Skills = () => {
-  const [isDesktop, setIsDesktop] = useState(false);
+const stars = generateStars(80);
 
-  useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
-  }, []);
+const Skills = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
 
   const skillCategories = [
     {
       name: "Frontend",
       skills: [
-        { name: "React", icon: SiReact, color: "#61DAFB", level: "Specialized" },
-        { name: "React Native", icon: SiReact, color: "#61DAFB", level: "Specialized" },
-        { name: "Next.js", icon: SiNextdotjs, color: "#ffffff", level: "Specialized" },
-        { name: "HTML5", icon: SiHtml5, color: "#E34F26", level: "Specialized" },
-        { name: "CSS3", icon: SiCss3, color: "#1572B6", level: "Specialized" },
-        { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E", level: "Specialized" },
-        { name: "TypeScript", icon: SiTypescript, color: "#3178C6", level: "Specialized" },
+        { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "Next.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", darkBg: true },
+        { name: "TypeScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+        { name: "JavaScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+        { name: "HTML5", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+        { name: "CSS3", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+        { name: "Tailwind", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+        { name: "Redux", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+        { name: "Framer", img: "https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png" }, // Custom URL for Framer Motion if needed
+      ],
+    },
+    {
+      name: "Mobile Development",
+      skills: [
+        { name: "React Native", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
       ],
     },
     {
       name: "Backend",
       skills: [
-        { name: "Node.js", icon: SiNodedotjs, color: "#339933", level: "Basic" },
-        { name: "Express.js", icon: SiExpress, color: "#ffffff", level: "Basic" },
-        { name: "REST APIs", icon: HiCode, color: "#60A5FA" },
+        { name: "Node.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+        { name: "Express", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", darkBg: true },
+        { name: "Python", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+        { name: "GraphQL", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
       ],
     },
     {
-      name: "Database",
+      name: "Database & Cloud",
       skills: [
-        { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
-        { name: "MySQL", icon: SiMysql, color: "#4479A1" },
-        { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
-      ],
-    },
-    {
-      name: "Languages & Tools",
-      skills: [
-        { name: "Python", icon: SiPython, color: "#3776AB", level: "Basic" },
-        { name: "Git", icon: SiGit, color: "#F05032" },
+        { name: "PostgreSQL", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+        { name: "MongoDB", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+        { name: "MySQL", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+        { name: "Firebase", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+        { name: "Docker", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+        { name: "Git", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
       ],
     },
   ];
@@ -165,107 +79,121 @@ const Skills = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.1,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
-      y: 0,
       scale: 1,
-      transition: { type: "spring", damping: 20, stiffness: 100 },
+      transition: { type: "spring", damping: 12, stiffness: 200 }
     },
   };
 
   return (
     <section
       id="skills"
-      className="skills-section min-h-screen flex flex-col justify-center py-16 relative bg-[#050816]"
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      className="skills-section min-h-screen py-20 relative flex flex-col justify-center items-center"
+      style={{
+        "--mouse-x": `${mousePosition.x}px`,
+        "--mouse-y": `${mousePosition.y}px`,
+      }}
     >
-      {isDesktop && <GalaxyParticles />}
+      {/* Galaxy Background Layers */}
+      <div className="skills-bg-gradient" />
 
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Nebula Blobs */}
+      <div className="skills-nebula skills-nebula--purple" />
+      <div className="skills-nebula skills-nebula--blue" />
+      <div className="skills-nebula skills-nebula--cyan" />
 
-      <div className="section-container relative z-10">
+      {/* Twinkling Stars */}
+      <div className="skills-stars">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="skills-star"
+            style={{
+              left: star.left,
+              top: star.top,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              '--duration': star.duration,
+              '--delay': star.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-12"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold font-display mb-4 text-white leading-tight tracking-tight">
-            Technical <span className="text-blue-400">Skills</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white tracking-tight">
+            Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400">Arsenal</span>
           </h2>
-          <p className="text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
-            A comprehensive toolkit of modern technologies designed to build
-            scalable and performant applications.
+          <p className="text-slate-300 max-w-2xl mx-auto text-lg">
+            The tools and technologies I use to bring ideas to life.
           </p>
         </motion.div>
 
-        <div className="space-y-10">
-          {skillCategories.map((category, catIndex) => (
-            <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <h3 className="text-sm font-bold text-blue-400 uppercase tracking-[0.2em]">
-                  {category.name}
-                </h3>
-                <div className="h-px flex-grow bg-gradient-to-r from-blue-500/30 to-transparent" />
-              </div>
+        <div className="space-y-16">
+          {skillCategories.map((category, index) => (
+            <div key={category.name} className="w-full">
+              <motion.h3
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="skill-category-title text-center text-2xl font-bold mb-8"
+              >
+                {category.name}
+              </motion.h3>
 
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
+                viewport={{ once: true, margin: "-50px" }}
+                className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 md:gap-8 justify-items-center"
               >
-                {category.skills.map((skill) => {
-                  const IconComponent = skill.icon;
-                  const isSpecialized = skill.level === "Specialized";
-                  return (
-                    <motion.div
-                      key={skill.name}
-                      variants={cardVariants}
-                      className={`skill-card group relative overflow-visible ${isSpecialized
-                        ? "!border-yellow-500/50 !shadow-[0_0_15px_rgba(234,179,8,0.1)] hover:!shadow-[0_0_25px_rgba(234,179,8,0.2)] hover:!border-yellow-400/80"
-                        : ""
-                        }`}
-                    >
-                      {skill.level === "Basic" && (
-                        <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full text-[0.6rem] font-bold uppercase tracking-wider border bg-slate-700/50 text-slate-400 border-slate-600/30">
-                          {skill.level}
-                        </div>
-                      )}
-
-                      <div className="skill-icon-container mt-4">
-                        <IconComponent
-                          className="w-8 h-8 transition-all duration-300"
-                          style={{ color: skill.color }}
-                        />
-                      </div>
-                      <h4 className="skill-name">{skill.name}</h4>
-                      <div className="skill-underline" />
-                    </motion.div>
-                  );
-                })}
+                {category.skills.map((skill) => (
+                  <motion.div
+                    key={skill.name}
+                    variants={itemVariants}
+                    className="skill-card-img group"
+                  >
+                    <div className={`skill-icon-box ${skill.darkBg ? 'bg-white rounded-xl p-2' : ''}`}>
+                      <img
+                        src={skill.img}
+                        alt={skill.name}
+                        className="w-full h-full object-contain drop-shadow-lg"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="skill-name-tooltip">
+                      {skill.name}
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <Tools />
+        <div className="mt-20">
+          <Tools />
+        </div>
       </div>
     </section>
   );

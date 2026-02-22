@@ -56,7 +56,7 @@ const StickyCursor = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 bg-blue-500/30 border border-blue-400 rounded-full pointer-events-none backdrop-blur-[1px] z-[9999]"
+      className="fixed top-0 left-0 bg-violet-500/30 border border-violet-400 rounded-full pointer-events-none backdrop-blur-[1px] z-[9999]"
       style={{
         translateX: cursorX,
         translateY: cursorY,

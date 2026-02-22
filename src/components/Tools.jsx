@@ -109,9 +109,9 @@ const Tools = () => {
     <section className="tools-section section-container">
       <div className="text-center mb-12">
         <h2 className="section-title mb-2 text-white">
-          My Creative <span className="text-blue-400">Toolkit</span>
+          My Creative <span className="text-violet-400">Toolkit</span>
         </h2>
-        <p className="section-subtitle text-slate-400">
+        <p className="section-subtitle text-slate-300">
           The specialized software and tools that power my workflow.
         </p>
       </div>

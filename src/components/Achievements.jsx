@@ -25,7 +25,7 @@ const BounceCard = ({ className, children, gradient, onClick }) => {
 
 const CardType = ({ children }) => {
   return (
-    <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-3">
+    <p className="text-[10px] font-bold text-violet-600 uppercase tracking-widest mb-3">
       {children}
     </p>
   );
@@ -159,7 +159,7 @@ const CertificateCarousel = ({ certificates, onSelect, onViewAll }) => {
       <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-6 z-30">
         <button
           onClick={prev}
-          className="p-2.5 bg-white/80 backdrop-blur-md border border-slate-200 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all text-slate-400 hover:text-blue-600 active:scale-95"
+          className="p-2.5 bg-white/80 backdrop-blur-md border border-slate-200 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all text-slate-400 hover:text-violet-600 active:scale-95"
           aria-label="Previous certificate"
         >
           <HiChevronLeft size={20} />
@@ -173,10 +173,10 @@ const CertificateCarousel = ({ certificates, onSelect, onViewAll }) => {
               onClick={() => setIndex(idx)}
               animate={{
                 width: idx === index ? 20 : 6,
-                backgroundColor: idx === index ? "#2563eb" : "#cbd5e1",
+                backgroundColor: idx === index ? "#7c3aed" : "#cbd5e1",
               }}
               whileHover={{
-                backgroundColor: idx === index ? "#2563eb" : "#94a3b8",
+                backgroundColor: idx === index ? "#7c3aed" : "#94a3b8",
               }}
               className="h-1.5 rounded-full transition-colors cursor-pointer"
               aria-label={`Go to certificate ${idx + 1}`}
@@ -186,7 +186,7 @@ const CertificateCarousel = ({ certificates, onSelect, onViewAll }) => {
 
         <button
           onClick={next}
-          className="p-2.5 bg-white/80 backdrop-blur-md border border-slate-200 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all text-slate-400 hover:text-blue-600 active:scale-95"
+          className="p-2.5 bg-white/80 backdrop-blur-md border border-slate-200 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all text-slate-400 hover:text-violet-600 active:scale-95"
           aria-label="Next certificate"
         >
           <HiChevronRight size={20} />
@@ -271,13 +271,13 @@ const Achievements = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px)",
+            "linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
 
       {/* Gradient Orbs */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-violet-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="section-container relative z-10 py-0">
@@ -286,7 +286,7 @@ const Achievements = () => {
           <motion.div
             animate={{ x: [-10, 10, -10] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex items-center gap-2 text-[10px] font-bold text-blue-400/60 uppercase tracking-widest"
+            className="flex items-center gap-2 text-[10px] font-bold text-violet-400/60 uppercase tracking-widest"
           >
             <HiChevronLeft /> Swipe to Explore <HiChevronRight />
           </motion.div>
@@ -300,7 +300,7 @@ const Achievements = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 text-white leading-tight tracking-tight">
-              My <span className="text-blue-400">Achievements</span>
+              My <span className="text-violet-400">Achievements</span>
             </h2>
             <p className="text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed font-light px-4">
               A showcase of my professional milestones, certifications, and
@@ -320,7 +320,7 @@ const Achievements = () => {
             {/* First Row */}
             <BounceCard
               className="col-span-12 md:col-span-6 min-h-[280px] sm:min-h-[300px]"
-              gradient="from-blue-400 to-indigo-400"
+              gradient="from-violet-400 to-indigo-400"
               onClick={() =>
                 setSelectedCert({
                   name: "Android Application Development with IoT - NSIC",
@@ -331,7 +331,7 @@ const Achievements = () => {
               <CardType>Internship</CardType>
               <CardTitle>Android dev with IoT</CardTitle>
               <CardOrg>National Small Industries Corporation (NSIC)</CardOrg>
-              <div className="absolute bottom-0 left-4 right-4 top-32 sm:top-32 translate-y-8 rounded-t-2xl bg-gradient-to-br from-blue-400 to-indigo-400 p-6 transition-transform duration-[250ms] group-hover:translate-y-4 group-hover:rotate-[2deg] overflow-hidden">
+              <div className="absolute bottom-0 left-4 right-4 top-32 sm:top-32 translate-y-8 rounded-t-2xl bg-gradient-to-br from-violet-400 to-indigo-400 p-6 transition-transform duration-[250ms] group-hover:translate-y-4 group-hover:rotate-[2deg] overflow-hidden">
                 <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-medium">
                   Successfully completed virtual internship training on Android
                   application development with IoT conducted by NSIC, showcasing
@@ -498,7 +498,7 @@ const Achievements = () => {
                       key={cert.name}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group relative bg-slate-800 rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-blue-500/50 transition-all shadow-lg"
+                      className="group relative bg-slate-800 rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-violet-500/50 transition-all shadow-lg"
                       onClick={() => {
                         setSelectedCert(cert);
                         setIsGridViewOpen(false);
@@ -517,7 +517,7 @@ const Achievements = () => {
                         </p>
                       </div>
                       {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-colors flex items-center justify-center">
+                      <div className="absolute inset-0 bg-violet-600/0 group-hover:bg-violet-600/10 transition-colors flex items-center justify-center">
                         <HiEye className="text-white opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-300 w-10 h-10" />
                       </div>
                     </motion.div>
@@ -539,16 +539,16 @@ const Achievements = () => {
       <div className="absolute bottom-10 right-6 md:right-10 z-[60] group/tooltip">
         <motion.button
           animate={{
-            boxShadow: ["0 0 0 0px rgba(59, 130, 246, 0.4)", "0 0 0 10px rgba(59, 130, 246, 0)", "0 0 0 0px rgba(59, 130, 246, 0)"]
+            boxShadow: ["0 0 0 0px rgba(139, 92, 246, 0.4)", "0 0 0 10px rgba(139, 92, 246, 0)", "0 0 0 0px rgba(139, 92, 246, 0)"]
           }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           onClick={() => setIsGridViewOpen(true)}
-          className="p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-2xl hover:scale-110 transition-all active:scale-95 flex items-center justify-center relative overflow-visible"
+          className="p-3 bg-violet-600 hover:bg-violet-500 text-white rounded-full shadow-2xl hover:scale-110 transition-all active:scale-95 flex items-center justify-center relative overflow-visible"
           aria-label="View all certificates"
         >
           <HiEye size={22} />
           {/* Subtle Ping/Pulse Effect */}
-          <span className="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-20 pointer-events-none" />
+          <span className="absolute inset-0 rounded-full bg-violet-400 animate-ping opacity-20 pointer-events-none" />
         </motion.button>
         <div className="absolute bottom-full right-0 mb-4 px-3 py-1.5 bg-slate-900/95 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-2xl border border-white/10">
           View All Certificates
