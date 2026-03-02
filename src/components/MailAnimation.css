@@ -4,6 +4,7 @@
   height: 200px;
   cursor: pointer;
   margin: 0 auto;
+  user-select: none;
 }
 
 .animated-mail {
@@ -102,24 +103,25 @@
   color: #1e293b;
   /* slate-800 */
   margin-bottom: 2px;
+  cursor: pointer;
 }
 
 .animated-mail .letter-context {
   font-size: 10px;
   color: #64748b;
   /* slate-500 */
+  cursor: pointer;
 }
 
-/* Hover & View State */
-.letter-image:hover .animated-mail,
-.letter-image.is-in-view .animated-mail {
+/* ── Hover state (desktop feel-good UX) ── */
+.letter-image:hover .animated-mail {
   transform: translateY(0);
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
 }
 
-.letter-image:hover .animated-mail .top-fold,
-.letter-image.is-in-view .animated-mail .top-fold {
+/* ── Opened state (triggered by click via JS) ── */
+.letter-image.is-open .animated-mail .top-fold {
   transition:
     transform 0.4s,
     z-index 0.2s;
@@ -135,13 +137,13 @@
   z-index: 0;
 }
 
-.letter-image:hover .animated-mail .letter,
-.letter-image.is-in-view .animated-mail .letter {
+.letter-image.is-open .animated-mail .letter {
   height: 120px;
   bottom: 95px;
-  /* Significant lift to pop out of envelope */
+  /* Pops out of envelope */
 }
 
+/* ── Shadow ── */
 .shadow {
   position: absolute;
   top: 160px;
@@ -160,10 +162,29 @@
       rgba(0, 0, 0, 0));
 }
 
-.letter-image:hover .shadow,
-.letter-image.is-in-view .shadow {
+.letter-image.is-open .shadow {
   width: 280px;
   opacity: 0.8;
+}
+
+/* ── "tap to open" hint label floating over envelope body ── */
+.envelope-tap-hint {
+  position: absolute;
+  /* The bottom of .animated-mail is at 0; the blue body triangle spans the bottom 100px.
+     Place text ~30px from the bottom so it sits in the lower-centre of the triangle. */
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 3;
+  /* subtle text-shadow so it reads against any background */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 768px) {
