@@ -1,4 +1,19 @@
 import SocialLinks from "./SocialLinks";
+import "../components/SkillsSection.css";
+
+// Generate random stars for the background
+const generateStars = (count) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    size: Math.random() * 2 + 1,
+    duration: `${Math.random() * 4 + 2}s`,
+    delay: `${Math.random() * 5}s`,
+  }));
+};
+
+const stars = generateStars(80);
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -53,15 +68,41 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-white border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
+    <footer className="relative bg-[#050816] border-t border-slate-800 overflow-hidden">
+      {/* Galaxy Background Layers */}
+      <div className="skills-bg-gradient" />
+
+      {/* Nebula Blobs */}
+      <div className="skills-nebula skills-nebula--purple" />
+      <div className="skills-nebula skills-nebula--blue" />
+      <div className="skills-nebula skills-nebula--cyan" />
+
+      {/* Twinkling Stars */}
+      <div className="skills-stars">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="skills-star"
+            style={{
+              left: star.left,
+              top: star.top,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              '--duration': star.duration,
+              '--delay': star.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 relative z-10">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand Section */}
           <div>
-            <h3 className="text-xl font-bold font-display text-slate-900 mb-4">
+            <h3 className="text-xl font-bold font-display text-white mb-4">
               Sakthi<span className="text-slate-400">.</span>
             </h3>
-            <p className="text-slate-500 text-sm leading-relaxed font-normal">
+            <p className="text-slate-400 text-sm leading-relaxed font-normal">
               Building elegant, high-performance digital experiences. Let's
               transform your vision into reality with modern technologies.
             </p>
@@ -69,7 +110,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider">
+            <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">
               Navigation
             </h4>
             <ul className="space-y-3">
@@ -78,7 +119,7 @@ const Footer = () => {
                   <a
                     href={link.href}
                     onClick={(e) => scrollToSection(e, link.href)}
-                    className="text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium"
+                    className="text-slate-400 hover:text-white transition-colors text-sm font-medium"
                   >
                     {link.name}
                   </a>
@@ -89,7 +130,7 @@ const Footer = () => {
 
           {/* Social Links */}
           <div>
-            <h4 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider">
+            <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">
               Find Me On
             </h4>
             <SocialLinks />
@@ -97,7 +138,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-400 text-xs font-medium">
             © {currentYear} Sakthi. All rights reserved.
           </p>

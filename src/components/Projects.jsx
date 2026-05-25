@@ -10,6 +10,7 @@ import {
   SiHtml5,
   SiCss3,
   SiJavascript,
+  SiVite,
 } from "react-icons/si";
 
 // Tech icon mapping
@@ -22,6 +23,7 @@ const techIcons = {
   HTML5: <SiHtml5 className="w-4 h-4" />,
   CSS3: <SiCss3 className="w-4 h-4" />,
   JavaScript: <SiJavascript className="w-4 h-4" />,
+  Vite: <SiVite className="w-4 h-4" />,
   Tkinter: <SiPython className="w-4 h-4" />,
 };
 
@@ -33,143 +35,119 @@ const ProjectCard = ({
   image,
   githubLink,
   liveLink,
-  progress,
-  range,
-  targetScale,
   onViewDetails,
 }) => {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start end", "start start"],
-  });
-
-  const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
-
   return (
-    <div
-      ref={container}
-      className="min-h-[70vh] md:min-h-screen flex items-start justify-center sticky top-0 px-4 py-12 md:pt-32 lg:px-8"
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: i * 0.1 }}
+      viewport={{ once: true }}
+      className="group relative h-full rounded-[1.5rem] p-6 sm:p-8 origin-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border border-slate-700/50 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col overflow-hidden"
     >
-      <motion.div
-        style={{
-          scale,
-          top: `calc(5vh + ${i * 15}px)`,
-        }}
-        className="group relative h-auto md:h-[500px] w-full max-w-5xl rounded-[2rem] p-6 sm:p-8 md:p-10 origin-top bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border border-slate-700/50 shadow-2xl flex flex-col md:flex-row gap-8 overflow-hidden"
-      >
-        {/* Animated gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-        {/* Decorative elements */}
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all duration-700" />
-        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all duration-700" />
+      {/* Decorative elements */}
+      <div className="absolute -top-20 -right-20 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all duration-700" />
+      <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all duration-700" />
 
-        {/* Individual Eye Icon - Top Right of Card */}
-        <div className="absolute top-6 right-6 z-40 group/tooltip scale-90 md:scale-100">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onViewDetails();
-            }}
-            className="p-2.5 bg-slate-900 border border-white/30 text-white rounded-full shadow-2xl hover:bg-slate-800 hover:scale-110 transition-all active:scale-95 flex items-center justify-center relative backdrop-blur-sm"
-            aria-label="View project details"
-          >
-            <HiEye size={20} />
-          </button>
-
-          <div className="absolute top-full right-0 mt-3 px-3 py-1.5 bg-slate-900/95 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-xl border border-white/10">
-            Expand details
-            <div className="absolute bottom-full right-3 border-4 border-transparent border-b-slate-900/95" />
-          </div>
-        </div>
-
-        <div
-          className={`flex flex-col md:flex-row w-full h-full items-center gap-6 md:gap-16 relative z-10 ${i % 2 === 1 ? "md:flex-row-reverse" : ""
-            }`}
+      {/* Eye Icon - Top Right of Card */}
+      <div className="absolute top-6 right-6 z-40 group/tooltip">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onViewDetails();
+          }}
+          className="p-2 bg-slate-900/80 border border-white/30 text-white rounded-full shadow-lg hover:bg-slate-800 hover:scale-110 transition-all active:scale-95 flex items-center justify-center backdrop-blur-sm"
+          aria-label="View project details"
         >
-          {/* Image Container */}
-          <div className="w-full md:w-[45%] h-[200px] sm:h-[250px] md:h-full rounded-2xl overflow-hidden relative border border-slate-600/50 shadow-xl group/img shrink-0">
-            <motion.div style={{ scale: imageScale }} className="w-full h-full">
-              <img
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover object-left-top transition-all duration-700 group-hover/img:scale-105"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-60 group-hover/img:opacity-40 transition-opacity duration-500" />
-          </div>
+          <HiEye size={18} />
+        </button>
 
-          {/* Content Container */}
-          <div className="w-full md:w-[55%] flex flex-col justify-center overflow-hidden">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 font-display tracking-tight group-hover:text-indigo-100 transition-colors duration-300">
-              {title}
-            </h3>
-            <p className="text-slate-300 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8 line-clamp-4 sm:line-clamp-none">
-              {description}
-            </p>
-
-            {/* Tech Stack with icons */}
-            <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
-              {technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="group/tech px-2 py-1.5 sm:px-3 sm:py-2 bg-slate-800/80 border border-slate-600/50 hover:border-indigo-400/50 text-indigo-300 rounded-xl text-[10px] sm:text-xs font-medium tracking-wide inline-flex items-center gap-2 hover:bg-slate-700/80 transition-all duration-300 hover:scale-105"
-                >
-                  {techIcons[tech] && (
-                    <span className="group-hover/tech:text-indigo-400 transition-colors">
-                      {techIcons[tech]}
-                    </span>
-                  )}
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            {/* Actions */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-              <a
-                href={githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-slate-700/50 hover:bg-slate-600/50 border border-slate-600/50 hover:border-indigo-400/50 text-white hover:text-indigo-300 rounded-xl transition-all duration-300 text-[10px] sm:text-xs font-bold uppercase tracking-widest group/link hover:scale-105 grow sm:grow-0 justify-center"
-              >
-                <FaGithub
-                  size={18}
-                  className="group-hover/link:rotate-12 transition-transform duration-300"
-                />
-                Source Code
-              </a>
-              {liveLink && liveLink !== "#" && (
-                <a
-                  href={liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-indigo-600/80 hover:bg-indigo-500/90 border border-indigo-400/50 text-white rounded-xl transition-all duration-300 text-[10px] sm:text-xs font-bold uppercase tracking-widest group/link hover:scale-105 shadow-lg shadow-indigo-500/20 grow sm:grow-0 justify-center"
-                >
-                  <FaExternalLinkAlt
-                    size={16}
-                    className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform duration-300"
-                  />
-                  Live Demo
-                </a>
-              )}
-            </div>
-          </div>
+        <div className="absolute top-full right-0 mt-2 px-3 py-1 bg-slate-900/95 backdrop-blur-sm text-white text-[9px] font-bold uppercase tracking-wider rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-xl border border-white/10">
+          View Details
+          <div className="absolute bottom-full right-3 border-3 border-transparent border-b-slate-900/95" />
         </div>
-      </motion.div>
-    </div>
+      </div>
+
+      {/* Image Container */}
+      <div className="w-full h-[200px] sm:h-[220px] rounded-xl overflow-hidden relative border border-slate-600/50 shadow-lg group/img mb-2">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/img:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent opacity-60 group-hover/img:opacity-40 transition-opacity duration-500" />
+      </div>
+
+      {/* Content Container */}
+      <div className="flex flex-col flex-1 overflow-hidden relative z-10">
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 font-display tracking-tight group-hover:text-indigo-200 transition-colors duration-300 line-clamp-2">
+          {title}
+        </h3>
+        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
+          {description}
+        </p>
+
+        {/* Tech Stack with icons */}
+        <div className="flex flex-wrap gap-2 mb-5">
+          {technologies.slice(0, 3).map((tech) => (
+            <span
+              key={tech}
+              className="group/tech px-2 py-1 bg-slate-800/80 border border-slate-600/50 hover:border-indigo-400/50 text-indigo-300 rounded-lg text-[9px] sm:text-[10px] font-medium tracking-wide inline-flex items-center gap-1.5 hover:bg-slate-700/80 transition-all duration-300"
+            >
+              {techIcons[tech] && (
+                <span className="group-hover/tech:text-indigo-400 transition-colors">
+                  {techIcons[tech]}
+                </span>
+              )}
+              {tech}
+            </span>
+          ))}
+          {technologies.length > 3 && (
+            <span className="px-2 py-1 text-indigo-400 text-[9px] sm:text-[10px] font-medium">
+              +{technologies.length - 3} more
+            </span>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div className="flex flex-wrap items-center gap-2 mt-auto pt-4 border-t border-slate-700/50">
+          <a
+            href={githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 flex-1 px-3 py-2 bg-slate-700/50 hover:bg-slate-600/50 border border-slate-600/50 hover:border-indigo-400/50 text-white hover:text-indigo-300 rounded-lg transition-all duration-300 text-[9px] sm:text-[10px] font-bold uppercase tracking-wide group/link hover:scale-105 justify-center"
+          >
+            <FaGithub
+              size={14}
+              className="group-hover/link:rotate-12 transition-transform duration-300"
+            />
+            Code
+          </a>
+          {liveLink && liveLink !== "#" && (
+            <a
+              href={liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 flex-1 px-3 py-2 bg-indigo-600/80 hover:bg-indigo-500/90 border border-indigo-400/50 text-white rounded-lg transition-all duration-300 text-[9px] sm:text-[10px] font-bold uppercase tracking-wide group/link hover:scale-105 shadow-lg shadow-indigo-500/20 justify-center"
+            >
+              <FaExternalLinkAlt
+                size={12}
+                className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300"
+              />
+              Live
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
 const Projects = () => {
-  const container = useRef(null);
   const [selectedProject, setSelectedProject] = useState(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
 
   // Prevent background scroll when modal is open
   useEffect(() => {
@@ -184,6 +162,7 @@ const Projects = () => {
   }, [selectedProject]);
 
   const projects = [
+
     {
       title: "E-Commerce Platform",
       description:
@@ -219,74 +198,86 @@ const Projects = () => {
       liveLink: "https://sakthivel1011.github.io/PORTFOLIO/",
       githubLink: "https://github.com/sakthivel1011/PORTFOLIO",
     },
+    {
+      title: "AI Challenge Tracker",
+      description:
+        "AI Challenge Tracker is a smart productivity web app built with React and Vite to help users organize daily challenges, monitor progress, and stay consistent. It includes AI-assisted workflows for a more interactive experience and is deployed on Netlify for fast, reliable access.",
+      technologies: ["React", "Vite", "AI", "Netlify"],
+      image: "assets/projects/challenge tracker.png",
+      modalImageClass: "object-contain p-4 bg-slate-50",
+      liveLink: "https://challenge-tracker-pwa-react.netlify.app/",
+      githubLink: "#",
+    },
+
+    
   ];
 
   return (
-    <section id="projects" ref={container} className="relative bg-white w-full">
-      {/* Header Section */}
-      <div className="section-container text-center pb-0 md:pb-0">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="section-title mb-6">
-            Featured <span className="text-violet-600">Projects</span>
-          </h2>
-          <p className="section-subtitle mb-0">
-            A curated selection of my technical works where architecture meets
-            creativity.
-          </p>
-        </motion.div>
+    <section id="projects" className="relative bg-white w-full py-12 sm:py-16 md:py-20">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-500/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/3 rounded-full blur-3xl" />
       </div>
 
-      {/* Projects Stack */}
-      <div className="relative">
-        {projects.map((project, i) => {
-          const targetScale = 1 - (projects.length - i) * 0.05;
-          return (
-            <ProjectCard
-              key={`p_${i}`}
-              i={i}
-              {...project}
-              progress={scrollYProgress}
-              range={[i * (1 / projects.length), 1]}
-              targetScale={targetScale}
-              onViewDetails={() => setSelectedProject(project)}
-            />
-          );
-        })}
-      </div>
-
-      {/* Bottom CTA */}
-      <div className="py-16 text-center relative">
-        {/* Decorative background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="relative z-10"
-        >
-          <p className="text-slate-600 mb-6 text-sm font-medium tracking-wide uppercase">
-            Want to see more?
-          </p>
-          <a
-            href="https://github.com/sakthivel1011"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-indigo-600 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-indigo-500/20"
+      <div className="relative z-10">
+        {/* Header Section */}
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            Explore More on GitHub
-            <FaGithub
-              size={20}
-              className="group-hover:rotate-12 transition-transform"
-            />
-          </a>
-        </motion.div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 font-display tracking-tight">
+              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400">Projects</span>
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              A curated selection of my technical works where architecture meets
+              creativity.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="section-container">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {projects.map((project, i) => (
+              <ProjectCard
+                key={`p_${i}`}
+                i={i}
+                {...project}
+                onViewDetails={() => setSelectedProject(project)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="py-10 sm:py-12 text-center relative mt-6 sm:mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-slate-600 mb-6 text-xs sm:text-sm font-medium tracking-wide uppercase">
+              Want to see more?
+            </p>
+            <a
+              href="https://github.com/sakthivel1011"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-full font-bold hover:from-blue-500 hover:to-cyan-500 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/30"
+            >
+              Explore More on GitHub
+              <FaGithub
+                size={20}
+                className="group-hover:rotate-12 transition-transform"
+              />
+            </a>
+          </motion.div>
+        </div>
       </div>
 
       {/* Premium Individual Project Detail Modal */}
@@ -313,7 +304,8 @@ const Projects = () => {
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-full object-cover object-center"
+                  className={`w-full h-full object-center ${selectedProject.modalImageClass || "object-cover"
+                    }`}
                 />
               </div>
 
@@ -351,7 +343,8 @@ const Projects = () => {
                         <img
                           src={selectedProject.image}
                           alt={selectedProject.title}
-                          className="w-full h-full object-cover"
+                          className={`w-full h-full object-center ${selectedProject.modalImageClass || "object-cover"
+                            }`}
                         />
                       </div>
 
@@ -398,7 +391,7 @@ const Projects = () => {
                             href={selectedProject.liveLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto sm:min-w-[160px] inline-flex items-center justify-center gap-2.5 px-5 py-3.5 bg-violet-600 text-white rounded-2xl text-[10px] sm:text-xs font-bold hover:bg-violet-500 transition-all active:scale-95 shadow-xl shadow-violet-500/20 order-1 sm:order-2"
+                            className="w-full sm:w-auto sm:min-w-[160px] inline-flex items-center justify-center gap-2.5 px-5 py-3.5 bg-blue-600 text-white rounded-2xl text-[10px] sm:text-xs font-bold hover:bg-blue-500 transition-all active:scale-95 shadow-xl shadow-blue-500/20 order-1 sm:order-2"
                           >
                             <FaExternalLinkAlt size={14} />
                             Live Experience
@@ -426,7 +419,7 @@ const Projects = () => {
           </div>
         )}
       </AnimatePresence>
-    </section >
+    </section>
   );
 };
 

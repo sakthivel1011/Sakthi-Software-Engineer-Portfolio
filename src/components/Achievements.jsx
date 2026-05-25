@@ -8,6 +8,21 @@ import {
   HiChevronRight,
 } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
+import "../components/SkillsSection.css";
+
+// Generate random stars for the background
+const generateStars = (count) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    size: Math.random() * 2 + 1,
+    duration: `${Math.random() * 4 + 2}s`,
+    delay: `${Math.random() * 5}s`,
+  }));
+};
+
+const stars = generateStars(80);
 
 // Bouncy Card Components
 const BounceCard = ({ className, children, gradient, onClick }) => {
@@ -260,25 +275,33 @@ const Achievements = () => {
   return (
     <section
       id="achievements"
-      className="min-h-screen flex flex-col pt-[20vh] pb-12 w-full overflow-hidden relative"
-      style={{
-        background:
-          "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
-      }}
+      className="min-h-screen flex flex-col pt-[20vh] pb-12 w-full overflow-hidden relative bg-[#050816]"
     >
-      {/* Animated Grid Background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {/* Galaxy Background Layers */}
+      <div className="skills-bg-gradient" />
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-violet-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Nebula Blobs */}
+      <div className="skills-nebula skills-nebula--purple" />
+      <div className="skills-nebula skills-nebula--blue" />
+      <div className="skills-nebula skills-nebula--cyan" />
+
+      {/* Twinkling Stars */}
+      <div className="skills-stars">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="skills-star"
+            style={{
+              left: star.left,
+              top: star.top,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              '--duration': star.duration,
+              '--delay': star.delay,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="section-container relative z-10 py-0">
         {/* Swipe Hint for Mobile */}
@@ -292,7 +315,7 @@ const Achievements = () => {
           </motion.div>
         </div>
 
-        <div className="text-center mb-8">
+        <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -300,7 +323,7 @@ const Achievements = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-bold font-display mb-4 text-white leading-tight tracking-tight">
-              My <span className="text-violet-400">Achievements</span>
+              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400">Achievements</span>
             </h2>
             <p className="text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed font-light px-4">
               A showcase of my professional milestones, certifications, and
@@ -539,16 +562,20 @@ const Achievements = () => {
       <div className="absolute bottom-10 right-6 md:right-10 z-[60] group/tooltip">
         <motion.button
           animate={{
-            boxShadow: ["0 0 0 0px rgba(139, 92, 246, 0.4)", "0 0 0 10px rgba(139, 92, 246, 0)", "0 0 0 0px rgba(139, 92, 246, 0)"]
+            boxShadow: [
+              "0 0 0 0px rgba(37, 99, 235, 0.4)",
+              "0 0 0 10px rgba(37, 99, 235, 0)",
+              "0 0 0 0px rgba(37, 99, 235, 0)",
+            ]
           }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           onClick={() => setIsGridViewOpen(true)}
-          className="p-3 bg-violet-600 hover:bg-violet-500 text-white rounded-full shadow-2xl hover:scale-110 transition-all active:scale-95 flex items-center justify-center relative overflow-visible"
+          className="p-3 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white rounded-full shadow-2xl shadow-blue-500/30 hover:scale-110 transition-all active:scale-95 flex items-center justify-center relative overflow-visible"
           aria-label="View all certificates"
         >
           <HiEye size={22} />
           {/* Subtle Ping/Pulse Effect */}
-          <span className="absolute inset-0 rounded-full bg-violet-400 animate-ping opacity-20 pointer-events-none" />
+          <span className="absolute inset-0 rounded-full bg-cyan-400 animate-ping opacity-20 pointer-events-none" />
         </motion.button>
         <div className="absolute bottom-full right-0 mb-4 px-3 py-1.5 bg-slate-900/95 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-2xl border border-white/10">
           View All Certificates

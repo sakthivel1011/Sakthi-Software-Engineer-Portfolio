@@ -150,7 +150,7 @@ const About = () => {
     >
       <div className="section-container w-full py-0">
         {/* Centered Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <h2 className="section-title mb-4">
-              About <span className="text-violet-600">Me</span>
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400">Me</span>
             </h2>
           </motion.div>
         </div>

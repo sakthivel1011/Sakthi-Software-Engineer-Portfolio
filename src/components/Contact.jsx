@@ -102,7 +102,7 @@ const Contact = () => {
 
       <div className="section-container relative z-10 py-0">
         {/* Compact Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <h2 className="section-title mb-4">
-              Get In <span className="text-violet-600">Touch</span>
+              Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400">Touch</span>
             </h2>
             <p className="text-slate-500 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
               Reach out for collaborations or just to say hello. I'm always looking for interesting projects.
